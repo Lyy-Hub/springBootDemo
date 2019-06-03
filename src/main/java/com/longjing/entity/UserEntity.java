@@ -1,5 +1,7 @@
 package com.longjing.entity;
 
+import org.coodex.util.Common;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -13,7 +15,7 @@ import java.util.UUID;
 @Table(name = "t_user")
 public class UserEntity {
     @Id
-    private String id= UUID.randomUUID().toString();
+    private String id= Common.getUUIDStr();
     private String userName;//用户名
     private String password;//密码 md5加密大写
     private String sex;//性别
