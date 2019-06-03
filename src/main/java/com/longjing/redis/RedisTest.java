@@ -1,7 +1,7 @@
 package com.longjing.redis;
 
 /**
- * Created by 18746 on 2019/3/25.
+ * Created by liyueyang on 2019/3/25.
  */
 public class RedisTest {
 

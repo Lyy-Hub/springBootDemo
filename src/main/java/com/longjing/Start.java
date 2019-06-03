@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ImportResource;
 import java.util.Arrays;
 
 /**
- * Created by 18746 on 2019/1/18.
+ * Created by liyueyang on 2019/1/18.
  */
 @SpringBootApplication
 @ImportResource(locations = "spring.xml")

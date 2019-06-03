@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by 18746 on 2019/6/3.
+ * Created by liyueyang on 2019/6/3.
  */
 @Component
 public class UserInfoCopier extends AbstractCopier<UserEntity, UserInfo> {

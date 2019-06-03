@@ -10,7 +10,7 @@ import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by 18746 on 2019/5/24.
+ * Created by liyueyang on 2019/5/24.
  */
 @Component
 public class JedisClient {

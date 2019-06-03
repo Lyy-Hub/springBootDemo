@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 /**
- * Created by 18746 on 2019/5/24.
+ * Created by liyueyang on 2019/5/24.
  */
 public class UserInfo implements Serializable{
     private String id;

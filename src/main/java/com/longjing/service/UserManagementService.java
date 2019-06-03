@@ -29,7 +29,7 @@ import java.util.UUID;
 import java.util.concurrent.*;
 
 /**
- * Created by 18746 on 2019/5/24.
+ * Created by liyueyang on 2019/5/24.
  */
 @Service
 public class UserManagementService {

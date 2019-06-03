@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.UUID;
 
 /**
- * Created by 18746 on 2019/5/24.
+ * Created by liyueyang on 2019/5/24.
  */
 @Entity
 @Table(name = "t_user")

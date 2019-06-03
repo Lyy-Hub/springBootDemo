@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Created by 18746 on 2019/5/27.
+ * Created by liyueyang on 2019/5/27.
  */
 @Component
 public class JwtFilter extends HandlerInterceptorAdapter {

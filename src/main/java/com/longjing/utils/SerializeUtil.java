@@ -3,7 +3,7 @@ package com.longjing.utils;
 import java.io.*;
 
 /**
- * Created by 18746 on 2019/5/28.
+ * Created by liyueyang on 2019/5/28.
  */
 public class SerializeUtil {
 

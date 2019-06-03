@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 /**
- * Created by 18746 on 2019/6/3.
+ * Created by liyueyang on 2019/6/3.
  */
 public class PageResult<T>{
     private int num;

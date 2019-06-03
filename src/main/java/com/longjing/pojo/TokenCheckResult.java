@@ -3,7 +3,7 @@ package com.longjing.pojo;
 import io.jsonwebtoken.Claims;
 
 /**
- * Created by 18746 on 2019/5/27.
+ * Created by liyueyang on 2019/5/27.
  */
 public class TokenCheckResult {
     private boolean success;

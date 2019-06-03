@@ -1,7 +1,7 @@
 package com.longjing.pojo;
 
 /**
- * Created by 18746 on 2019/5/24.
+ * Created by liyueyang on 2019/5/24.
  */
 public class ResponseInfo {
     private int code;

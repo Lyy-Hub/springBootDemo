@@ -1,7 +1,7 @@
 package com.longjing.pojo;
 
 /**
- * Created by 18746 on 2019/5/27.
+ * Created by liyueyang on 2019/5/27.
  */
 public class SystemConstant {
     public static final int JWT_ERRCODE_EXPIRE=10001;

@@ -10,7 +10,7 @@ import javax.crypto.spec.SecretKeySpec;
 import java.util.Date;
 
 /**
- * Created by 18746 on 2019/5/27.
+ * Created by liyueyang on 2019/5/27.
  */
 public class JwtUtil {
     public static String createJWT(String id, String subject, long ttlMillis) {

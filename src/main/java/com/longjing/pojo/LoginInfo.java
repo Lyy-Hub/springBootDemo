@@ -3,7 +3,7 @@ package com.longjing.pojo;
 import java.io.Serializable;
 
 /**
- * Created by 18746 on 2019/5/24.
+ * Created by liyueyang on 2019/5/24.
  */
 public class LoginInfo implements Serializable{
     private String userName;

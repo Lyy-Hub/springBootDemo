@@ -1,7 +1,7 @@
 package com.longjing.pojo;
 
 /**
- * Created by 18746 on 2019/6/3.
+ * Created by liyueyang on 2019/6/3.
  */
 public class UserParam {
     private String userName;
