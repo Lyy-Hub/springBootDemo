@@ -7,6 +7,7 @@ import com.longjing.repo.UserEntityRepo;
 import com.longjing.service.copier.UserInfoCopier;
 import com.longjing.utils.JwtUtil;
 import com.longjing.utils.Utils;
+import org.coodex.util.Common;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -53,7 +54,7 @@ public class UserManagementService {
             responseInfo.setInfo("用户名或密码错误");
             return responseInfo;
         } else {
-            String jwt = JwtUtil.createJWT(UUID.randomUUID().toString(), userEntity.getUserName(), SystemConstant.JWT_TTLMILIS);
+            String jwt = JwtUtil.createJWT(Common.getUUIDStr(), userEntity.getUserName(), SystemConstant.JWT_TTLMILIS);
             responseInfo.setCode(SystemConstant.SUCCESS);
             responseInfo.setInfo(jwt);
             return responseInfo;
