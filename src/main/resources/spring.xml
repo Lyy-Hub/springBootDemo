@@ -23,7 +23,7 @@
 ">
 
 
-    <context:component-scan base-package="com.longjing"></context:component-scan>
+    <context:component-scan base-package="com.lyy"></context:component-scan>
     <context:property-placeholder location="classpath*:redis.properties" />
 
     <!-- entity manager -->
@@ -37,7 +37,7 @@
         <!-- 指定Entity实体类包路径 -->
         <property name="packagesToScan">
             <array>
-                <value>com.longjing.entity</value>
+                <value>com.lyy.entity</value>
             </array>
         </property>
 
@@ -108,5 +108,5 @@
     <jpa:repositories
             entity-manager-factory-ref="entityManagerFactory"
             transaction-manager-ref="transactionManager"
-            base-package="com.longjing.repo"/>
+            base-package="com.lyy.repo"/>
 </beans>
