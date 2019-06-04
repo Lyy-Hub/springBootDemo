@@ -25,7 +25,7 @@ public class JwtFilter extends HandlerInterceptorAdapter {
             return true;
         }
         String token = request.getHeader("Authorization");
-        TokenCheckResult result= JwtUtil.validateJWT(token);
+        TokenCheckResult result = JwtUtil.validateJWT(token);
         return result.isSuccess();
     }
 

@@ -14,7 +14,7 @@ import java.util.Calendar;
 @Table(name = "t_user")
 public class UserEntity {
     @Id
-    private String id= Common.getUUIDStr();
+    private String id = Common.getUUIDStr();
     private String userName;//用户名
     private String password;//密码 md5加密大写
     private String sex;//性别

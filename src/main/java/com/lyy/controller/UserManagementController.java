@@ -21,7 +21,6 @@ public class UserManagementController {
 
     @PostMapping(value = "updateUser")
     public ResponseInfo updateUser(@RequestBody UserInfo userInfo){
-
         return applicationService.updateUser(userInfo);
     }
 
@@ -31,5 +30,7 @@ public class UserManagementController {
     }
 
     @PostMapping(value="findUser")
-    public PageResult<UserInfo> findUser(@RequestBody UserParam userParam, int pageSize, int num){return null;}
+    public PageResult<UserInfo> findUser(@RequestBody UserParam userParam, int pageSize, int num){
+        return applicationService.findUser(userParam,pageSize, num);
+    }
 }

@@ -137,11 +137,11 @@ public class UserManagementService {
 
     public PageResult<UserInfo> findUser(final UserParam userParam, int pageSize, int num){
 
-        Specification spec=new Specification<UserEntity>() {
+        Specification spec = new Specification<UserEntity>() {
             @Override
             public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
 
-                List<Predicate> predicateList=new ArrayList<Predicate>();
+                List<Predicate> predicateList = new ArrayList<Predicate>();
                 if (!StringUtils.isEmpty(userParam.getUserName())){
                     predicateList.add(criteriaBuilder.equal((root.<String>get("userName")),userParam.getUserName()));
                 }
@@ -152,18 +152,17 @@ public class UserManagementService {
                 return criteriaBuilder.and(predicateList.toArray(new Predicate[predicateList.size()]));
             }
         };
-        Sort sort=new Sort(Sort.Direction.DESC,"userName");
-        Pageable pageable=new PageRequest(num,pageSize,sort);
-        Page<UserEntity> page=userEntityRepo.findAll(spec,pageable);
-        List<UserInfo> userInfos=new ArrayList<UserInfo>();
-        List<UserEntity> userEntities=page.getContent();
+        Sort sort = new Sort(Sort.Direction.DESC,"userName");
+        Pageable pageable = new PageRequest(num,pageSize,sort);
+        Page<UserEntity> page = userEntityRepo.findAll(spec,pageable);
+        List<UserInfo> userInfos = new ArrayList<UserInfo>();
+        List<UserEntity> userEntities = page.getContent();
 
-        for (UserEntity u:userEntities
-             ) {
-            UserInfo userInfo=userInfoCopier.copy(u,new UserInfo());
+        for (UserEntity u : userEntities) {
+            UserInfo userInfo = userInfoCopier.copy(u,new UserInfo());
             userInfos.add(userInfo);
         }
-        PageResult<UserInfo> pageResult=new PageResult<UserInfo>();
+        PageResult<UserInfo> pageResult = new PageResult<UserInfo>();
         pageResult.setContent(userInfos);
         pageResult.setNum(page.getNumber());
         pageResult.setSize(page.getSize());

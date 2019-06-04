@@ -12,11 +12,11 @@ import java.util.Calendar;
  */
 public class Utils {
     public static String md5(String str) {
-        MessageDigest messageDigest= null;
+        MessageDigest messageDigest = null;
         StringBuffer buffer = new StringBuffer();
         try {
             messageDigest = MessageDigest.getInstance("md5");
-            byte[] bytes=messageDigest.digest(str.getBytes());
+            byte[] bytes = messageDigest.digest(str.getBytes());
             // 把每一个byte 做一个与运算 0xff;
             for (byte b : bytes) {
                 // 与运算
@@ -34,16 +34,16 @@ public class Utils {
         return buffer.toString().toUpperCase();
     }
 
-    private static ThreadLocal<DateFormat> df=new ThreadLocal<DateFormat>(){
+    private static ThreadLocal<DateFormat> df = new ThreadLocal<DateFormat>(){
         @Override
         protected DateFormat initialValue() {
             return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         }
     };
     public static String calender2Str(Calendar calendar){
-        if (null==calendar)return null;
-        SimpleDateFormat simpleDateFormat= (SimpleDateFormat) df.get();
-        String s=simpleDateFormat.format(calendar.getTime());
+        if (null == calendar)return null;
+        SimpleDateFormat simpleDateFormat = (SimpleDateFormat) df.get();
+        String s = simpleDateFormat.format(calendar.getTime());
         return s;
     }
 
