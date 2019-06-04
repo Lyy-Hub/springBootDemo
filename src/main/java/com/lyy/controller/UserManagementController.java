@@ -29,8 +29,13 @@ public class UserManagementController {
         return applicationService.addUser(userInfo);
     }
 
-    @PostMapping(value="findUser")
+    @GetMapping(value="findUser")
     public PageResult<UserInfo> findUser(@RequestBody PageRequest<UserParam> param){
         return applicationService.findUser(param);
+    }
+
+    @GetMapping(value="deleteUser")
+    public ResponseInfo deleteUser(@RequestBody String[] ids){
+        return applicationService.deleteUser(ids);
     }
 }
