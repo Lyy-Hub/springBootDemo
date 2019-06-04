@@ -59,8 +59,13 @@ public class UserManagementTest {
     @Test
     public void findUser(){
         UserParam userParam=new UserParam();
+        PageRequest<UserParam> pageRequest=new PageRequest<UserParam>();
+        userParam.setUserName("123");
         userParam.setStatus("1");
-        PageResult pageResult=userManagementService.findUser(userParam,10,0);
+        pageRequest.setParamContent(userParam);
+        pageRequest.setNum(0);
+        pageRequest.setSize(1);
+        PageResult pageResult=userManagementService.findUser(pageRequest);
         System.out.println(pageResult.toString());
     }
 }

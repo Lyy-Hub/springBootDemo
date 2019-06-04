@@ -135,39 +135,40 @@ public class UserManagementService {
         return responseInfo;
     }
 
-    public PageResult<UserInfo> findUser(final UserParam userParam, int pageSize, int num){
-
-        Specification spec = new Specification<UserEntity>() {
+    public PageResult<UserInfo> findUser(com.lyy.pojo.PageRequest<UserParam> param){
+        final UserParam userParam=param.getParamContent();
+        Specification spec=new Specification<UserEntity>() {
             @Override
             public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
 
-                List<Predicate> predicateList = new ArrayList<Predicate>();
+                List<Predicate> predicateList=new ArrayList<Predicate>();
                 if (!StringUtils.isEmpty(userParam.getUserName())){
                     predicateList.add(criteriaBuilder.equal((root.<String>get("userName")),userParam.getUserName()));
                 }
                 if (!StringUtils.isEmpty(userParam.getStatus())){
-                    predicateList.add(criteriaBuilder.equal((root.<String>get("status")),userParam.getUserName()));
+                    predicateList.add(criteriaBuilder.equal((root.<String>get("status")),userParam.getStatus()));
                 }
 
                 return criteriaBuilder.and(predicateList.toArray(new Predicate[predicateList.size()]));
             }
         };
-        Sort sort = new Sort(Sort.Direction.DESC,"userName");
-        Pageable pageable = new PageRequest(num,pageSize,sort);
-        Page<UserEntity> page = userEntityRepo.findAll(spec,pageable);
-        List<UserInfo> userInfos = new ArrayList<UserInfo>();
-        List<UserEntity> userEntities = page.getContent();
+        Sort sort=new Sort(Sort.Direction.DESC,"userName");
+        Pageable pageable=new PageRequest(param.getNum(),param.getSize(),sort);
+        Page<UserEntity> page=userEntityRepo.findAll(spec,pageable);
+        List<UserInfo> userInfos=new ArrayList<UserInfo>();
+        List<UserEntity> userEntities=page.getContent();
 
-        for (UserEntity u : userEntities) {
-            UserInfo userInfo = userInfoCopier.copy(u,new UserInfo());
+        for (UserEntity u:userEntities
+                ) {
+            UserInfo userInfo=userInfoCopier.copy(u,new UserInfo());
             userInfos.add(userInfo);
         }
-        PageResult<UserInfo> pageResult = new PageResult<UserInfo>();
+        PageResult<UserInfo> pageResult=new PageResult<UserInfo>();
         pageResult.setContent(userInfos);
         pageResult.setNum(page.getNumber());
         pageResult.setSize(page.getSize());
         pageResult.setTotal(page.getTotalElements());
-        pageResult.setTotalPages(pageResult.getTotalPages());
+        pageResult.setTotalPages(page.getTotalPages());
         return pageResult;
     }
 }
