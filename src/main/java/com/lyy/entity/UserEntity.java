@@ -77,4 +77,17 @@ public class UserEntity {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    @Override
+    public String toString() {
+        return "UserEntity{" +
+                "id='" + id + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", sex='" + sex + '\'' +
+                ", address='" + address + '\'' +
+                ", status='" + status + '\'' +
+                ", createTime=" + createTime +
+                '}';
+    }
 }

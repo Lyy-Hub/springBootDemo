@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by liyueyang on 2019/5/24.
@@ -40,11 +41,24 @@ public class Utils {
             return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         }
     };
+
     public static String calender2Str(Calendar calendar){
         if (null == calendar)return null;
         SimpleDateFormat simpleDateFormat = (SimpleDateFormat) df.get();
         String s = simpleDateFormat.format(calendar.getTime());
         return s;
+    }
+
+    /**
+     * 获取现在时间
+     * @return返回字符串格式yyyyMMdd
+     */
+    public static String getStringDate() {
+        Date currentTime = new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+        String dateString = formatter.format(currentTime);
+        //System.out.println("TIME:::"+dateString);
+        return dateString;
     }
 
 }

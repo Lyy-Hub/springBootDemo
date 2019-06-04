@@ -175,4 +175,20 @@ public class UserManagementService {
         pageResult.setTotalPages(page.getTotalPages());
         return pageResult;
     }
+
+    /**
+     * 查询所有
+     *  t_user
+     * @return
+     */
+    public List<UserInfo> findAll() {
+        List<UserInfo> userInfoList = new ArrayList<UserInfo>();
+        List<UserEntity> userEntities = userEntityRepo.findAll();
+        for(UserEntity u : userEntities){
+            UserInfo userInfo = userInfoCopier.copy(u,new UserInfo());
+            userInfoList.add(userInfo);
+        }
+        return userInfoList;
+    }
+
 }
