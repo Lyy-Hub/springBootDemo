@@ -31,6 +31,8 @@ public class UserManagementTest {
     @Test
     public void updateUser(){
         UserInfo userInfo=new UserInfo();
+        userInfo.setId("9f4d10be15464b7387373bbae3aa941f");
+        userInfo.setAddress("济南");
         userManagementService.updateUser(userInfo);
     }
 
@@ -53,6 +55,7 @@ public class UserManagementTest {
         userInfo.setUserName("王五");
         userInfo.setAddress("上海");
         userInfo.setPassword("123456");
+        userInfo.setSex("1");
         userManagementService.addUser(userInfo);
     }
 

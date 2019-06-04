@@ -19,23 +19,23 @@ public class UserManagementController {
         return applicationService.login(loginInfo);
     }
 
-    @PostMapping(value = "updateUser")
-    public ResponseInfo updateUser(@RequestBody UserInfo userInfo){
-        return applicationService.updateUser(userInfo);
-    }
-
     @PostMapping(value = "addUser")
     public ResponseInfo addUser(@RequestBody UserInfo userInfo){
         return applicationService.addUser(userInfo);
     }
 
-    @GetMapping(value="findUser")
-    public PageResult<UserInfo> findUser(@RequestBody PageRequest<UserParam> param){
-        return applicationService.findUser(param);
-    }
-
     @GetMapping(value="deleteUser")
     public ResponseInfo deleteUser(@RequestBody String[] ids){
         return applicationService.deleteUser(ids);
+    }
+
+    @PostMapping(value = "updateUser")
+    public ResponseInfo updateUser(@RequestBody UserInfo userInfo){
+        return applicationService.updateUser(userInfo);
+    }
+
+    @GetMapping(value="findUser")
+    public PageResult<UserInfo> findUser(@RequestBody PageRequest<UserParam> param){
+        return applicationService.findUser(param);
     }
 }

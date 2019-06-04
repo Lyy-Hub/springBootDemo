@@ -60,7 +60,53 @@ public class UserManagementService {
             return responseInfo;
         }
     }
-    //利用redis双删模式保持修改数据的一致性
+
+    /**
+     * 添加用户
+     * @param userInfo
+     * @return
+     */
+    public ResponseInfo addUser(UserInfo userInfo) {
+        ResponseInfo responseInfo = new ResponseInfo();
+        if (null != userInfo) {
+            final String key = userInfo.getUserName();
+            UserEntity userEntity = userEntityRepo.findByUserNameAndStatus(key, "1");
+            if (null == userEntity) {
+                UserEntity userEntity1 = new UserEntity();
+                BeanUtils.copyProperties(userInfo, userEntity1);
+                userEntity1.setId(Common.getUUIDStr());
+                userEntity1.setStatus("1");
+                userEntity1.setPassword(Utils.md5(userInfo.getPassword()));
+                userEntity1.setCreateTime(Calendar.getInstance());
+                userEntityRepo.save(userEntity1);
+                responseInfo.setInfo("添加成功");
+                responseInfo.setCode(SystemConstant.SUCCESS);
+                return responseInfo;
+            } else {
+                responseInfo.setInfo("用户名已存在");
+                responseInfo.setCode(SystemConstant.USERNAME_HAS_EXIST);
+                return responseInfo;
+            }
+        }
+        responseInfo.setInfo("失败");
+        responseInfo.setCode(SystemConstant.FAIL);
+        return responseInfo;
+    }
+
+    /**
+     * 删除用户
+     * @param ids
+     * @return
+     */
+    public ResponseInfo deleteUser(String[] ids) {
+        ResponseInfo responseInfo = new ResponseInfo();
+        for (String id : ids){
+            userEntityRepo.delete(id);
+        }
+        responseInfo.setCode(SystemConstant.SUCCESS);
+        responseInfo.setInfo("删除成功");
+        return responseInfo;
+    }
 
     /**
      * @param userInfo
@@ -69,24 +115,18 @@ public class UserManagementService {
     public ResponseInfo updateUser(final UserInfo userInfo) {
         ResponseInfo responseInfo = new ResponseInfo();
         if (null != userInfo) {
-            final String key = userInfo.getUserName();
-            //先看缓存中有没有用户信息，有的话删除缓存中信息
-            UserInfo userInfo1 = (UserInfo)JedisClient.getObject(key);
-            if (null!=userInfo1) {
-                JedisClient.delete(userInfo.getId());
-            }
-            UserEntity userEntity = userEntityRepo.findOne(key);
+            UserEntity userEntity = userEntityRepo.findOne(userInfo.getId());
             BeanUtils.copyProperties(userInfo, userEntity);
             userEntityRepo.save(userEntity);
 
-            //延时100ms再次删除缓存中用户信息，避免其他线程读取到脏数据
+            /*//延时100ms再次删除缓存中用户信息，避免其他线程读取到脏数据
             executorService.schedule(new Runnable() {
                 @Override
                 public void run() {
                     JedisClient.delete(key);
                     System.out.println("delete ok");
                 }
-            }, 100, TimeUnit.MILLISECONDS);
+            }, 100, TimeUnit.MILLISECONDS);*/
             responseInfo.setCode(SystemConstant.SUCCESS);
             responseInfo.setInfo("成功");
             return responseInfo;
@@ -97,44 +137,11 @@ public class UserManagementService {
         }
     }
 
-    //添加用户
-    public ResponseInfo addUser(UserInfo userInfo) {
-        ResponseInfo responseInfo = new ResponseInfo();
-        //先去缓存中查看是否用用户名重复的信息，有的话添加失败
-        if (null != userInfo) {
-            final String key = userInfo.getUserName();
-            //先看缓存中有没有用户信息，有的话删除缓存中信息
-            UserInfo userInfo1 = (UserInfo)JedisClient.getObject(key);
-            if (null!=userInfo1 && "1".equals(userInfo1.getStatus())) {
-                responseInfo.setInfo("用户名已存在");
-                responseInfo.setCode(SystemConstant.USERNAME_HAS_EXIST);
-                return responseInfo;
-            } else {//缓存中没有的话去数据库中进行查询用户名是否合法
-                UserEntity userEntity = userEntityRepo.findByUserNameAndStatus(key, "1");
-                if (null == userEntity) {
-                    UserEntity userEntity1 = new UserEntity();
-                    BeanUtils.copyProperties(userInfo, userEntity1);
-                    userEntity1.setId(UUID.randomUUID().toString());
-                    userEntity1.setStatus("1");
-                    userEntity1.setPassword(Utils.md5(userInfo.getPassword()));
-                    userEntity1.setCreateTime(Calendar.getInstance());
-                    userEntityRepo.save(userEntity1);
-                    JedisClient.setObject(userEntity1.getId(),userEntity1);//写入缓存
-                    responseInfo.setInfo("成功");
-                    responseInfo.setCode(SystemConstant.SUCCESS);
-                    return responseInfo;
-                } else {
-                    responseInfo.setInfo("用户名已存在");
-                    responseInfo.setCode(SystemConstant.USERNAME_HAS_EXIST);
-                    return responseInfo;
-                }
-            }
-        }
-        responseInfo.setInfo("失败");
-        responseInfo.setCode(SystemConstant.FAIL);
-        return responseInfo;
-    }
-
+    /**
+     * 分页查询
+     * @param param
+     * @return
+     */
     public PageResult<UserInfo> findUser(com.lyy.pojo.PageRequest<UserParam> param){
         final UserParam userParam = param.getParamContent();
         Specification spec = new Specification<UserEntity>() {
@@ -156,8 +163,7 @@ public class UserManagementService {
         List<UserInfo> userInfos = new ArrayList<UserInfo>();
         List<UserEntity> userEntities = page.getContent();
 
-        for (UserEntity u:userEntities
-                ) {
+        for (UserEntity u : userEntities) {
             UserInfo userInfo = userInfoCopier.copy(u,new UserInfo());
             userInfos.add(userInfo);
         }
@@ -168,15 +174,5 @@ public class UserManagementService {
         pageResult.setTotal(page.getTotalElements());
         pageResult.setTotalPages(page.getTotalPages());
         return pageResult;
-    }
-
-    public ResponseInfo deleteUser(String[] ids) {
-        ResponseInfo responseInfo = new ResponseInfo();
-        for (String id : ids){
-            userEntityRepo.delete(id);
-        }
-        responseInfo.setCode(SystemConstant.SUCCESS);
-        responseInfo.setInfo("删除成功");
-        return responseInfo;
     }
 }
