@@ -16,6 +16,7 @@ import java.util.UUID;
  */
 @Component
 public class RabbitMqSendServiceImpl implements RabbitMqSendService {
+
     private static Logger logger = LoggerFactory.getLogger(RabbitMqSendServiceImpl.class);
 
     @Autowired
