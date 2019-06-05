@@ -15,7 +15,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     @Override
     public void addInterceptors(InterceptorRegistry interceptorRegistry) {
         interceptorRegistry.addInterceptor(jwtFilter)
-                .addPathPatterns("/**").excludePathPatterns("/rabbitMq/send");
+                .addPathPatterns("/**").excludePathPatterns("/management/login");
     }
 
 }

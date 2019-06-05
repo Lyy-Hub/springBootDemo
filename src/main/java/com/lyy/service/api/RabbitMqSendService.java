@@ -11,6 +11,7 @@ public interface RabbitMqSendService extends RabbitTemplate.ConfirmCallback {
      * 发送消息方法
      *
      * @param message 发送内容
+     * @param sign   发送标识，用于区分消息类型
      */
-    void sendMessage(Object message);
+    void sendMessage(Object message, String sign);
 }

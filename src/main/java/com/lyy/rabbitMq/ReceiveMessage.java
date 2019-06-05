@@ -10,14 +10,17 @@ import org.springframework.stereotype.Component;
  * Created by liyueyang on 2019/6/5.
  */
 @Component
-@RabbitListener(queues = Constants.QUEUE_NAME)
 public class ReceiveMessage {
 
     private static Logger logger = LoggerFactory.getLogger(ReceiveMessage.class);
 
-    @RabbitHandler
+    @RabbitListener(queues = Constants.QUEUE_NAME)
     public void receiveMessage(Object userName) {
         logger.info("消息接收成功，内容为：" + userName);
     }
 
+    @RabbitListener(queues = Constants.USER_DELETE_QUEUE_NAME)
+    public void userDeleteReceiveMessage(Object userName) {
+        logger.info("（用户删除）消息接收成功，内容为：" + userName);
+    }
 }

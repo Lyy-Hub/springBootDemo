@@ -18,7 +18,7 @@ public class RabbitMQController {
     @GetMapping("send")
     public String saveUser() {
         //发送消息到RabbitMQ
-        sendMessageService.sendMessage("发送消息咯！！！");
+        sendMessageService.sendMessage("发送消息咯！！！","");
         return "success";
     }
 }

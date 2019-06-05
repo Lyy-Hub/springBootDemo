@@ -23,12 +23,16 @@ public class RabbitMqSendServiceImpl implements RabbitMqSendService {
     private RabbitTemplate rabbitTemplate;
 
     @Override
-    public void sendMessage(Object message) {
+    public void sendMessage(Object message, String sign) {
         //设置回调对象
         rabbitTemplate.setConfirmCallback(this);
         //构建回调返回的数据
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
-        rabbitTemplate.convertAndSend(Constants.EXCHANGE_NAME, Constants.QUEUE_ROUTE_KEY, message, correlationData);
+        if(sign == "userDelete"){ // 用户删除
+            rabbitTemplate.convertAndSend(Constants.USER_DELETE_EXCHANGE_NAME, Constants.USER_DELETE_QUEUE_ROUTE_KEY, message, correlationData);
+        } else { // 为空字符串时。。。
+            rabbitTemplate.convertAndSend(Constants.EXCHANGE_NAME, Constants.QUEUE_ROUTE_KEY, message, correlationData);
+        }
         logger.info("发送消息到RabbitMQ, 消息内容: " + message);
     }
 

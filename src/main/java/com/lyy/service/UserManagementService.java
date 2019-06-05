@@ -4,6 +4,7 @@ import com.lyy.entity.UserEntity;
 import com.lyy.pojo.*;
 import com.lyy.redis.JedisClient;
 import com.lyy.repo.UserEntityRepo;
+import com.lyy.service.api.RabbitMqSendService;
 import com.lyy.service.copier.UserInfoCopier;
 import com.lyy.utils.JwtUtil;
 import com.lyy.utils.Utils;
@@ -38,6 +39,9 @@ public class UserManagementService {
     private UserEntityRepo userEntityRepo;
     @Autowired
     private UserInfoCopier userInfoCopier;
+    @Autowired
+    private RabbitMqSendService sendMessageService;
+
     private static final ScheduledExecutorService executorService = new ScheduledThreadPoolExecutor(2);
 
     /**
@@ -101,6 +105,9 @@ public class UserManagementService {
     public ResponseInfo deleteUser(String[] ids) {
         ResponseInfo responseInfo = new ResponseInfo();
         for (String id : ids){
+            // 删除之前把用户信息存到rabbitmq消息队列中（仅测试，没有实际业务意义）
+            UserEntity userEntity = userEntityRepo.findOne(id);
+            sendMessageService.sendMessage(userEntity,"userDelete");
             userEntityRepo.delete(id);
         }
         responseInfo.setCode(SystemConstant.SUCCESS);
