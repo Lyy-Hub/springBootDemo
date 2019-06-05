@@ -75,5 +75,7 @@ public class UserManagementTest {
     @Test
     public void testRedis(){
         JedisClient.set("name","liyueyang");
+        JedisClient.get("name");
+        JedisClient.delete("name");
     }
 }
