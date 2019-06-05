@@ -71,4 +71,9 @@ public class UserManagementTest {
         PageResult pageResult=userManagementService.findUser(pageRequest);
         System.out.println(pageResult.toString());
     }
+
+    @Test
+    public void testRedis(){
+        JedisClient.set("name","liyueyang");
+    }
 }
