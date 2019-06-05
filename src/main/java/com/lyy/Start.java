@@ -1,5 +1,6 @@
 package com.lyy;
 
+import org.springframework.amqp.rabbit.annotation.EnableRabbit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.ImportResource;
  */
 @SpringBootApplication
 @ImportResource(locations = "spring.xml")
+@EnableRabbit
 public class Start extends SpringBootServletInitializer{
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
