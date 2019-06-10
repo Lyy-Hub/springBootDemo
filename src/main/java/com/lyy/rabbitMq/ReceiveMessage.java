@@ -20,7 +20,7 @@ public class ReceiveMessage {
     }
 
     @RabbitListener(queues = Constants.USER_DELETE_QUEUE_NAME)
-    public void userDeleteReceiveMessage(Object userName) {
-        logger.info("（用户删除）消息接收成功，内容为：" + userName);
+    public void userDeleteReceiveMessage(Object message) {
+        logger.info("（用户删除）消息接收成功，内容为：" + message);
     }
 }
