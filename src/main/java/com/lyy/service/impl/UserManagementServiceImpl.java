@@ -1,10 +1,10 @@
-package com.lyy.service;
+package com.lyy.service.impl;
 
 import com.lyy.entity.UserEntity;
 import com.lyy.pojo.*;
-import com.lyy.redis.JedisClient;
 import com.lyy.repo.UserEntityRepo;
 import com.lyy.service.api.RabbitMqSendService;
+import com.lyy.service.api.UserManagementService;
 import com.lyy.service.copier.UserInfoCopier;
 import com.lyy.utils.JwtUtil;
 import com.lyy.utils.Utils;
@@ -12,11 +12,10 @@ import org.coodex.util.Common;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -26,15 +25,14 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.*;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
 
 /**
- * Created by liyueyang on 2019/5/24.
+ * Created by liyueyang on 2019/6/12.
  */
-@Service
-public class UserManagementService {
-
+@Component
+public class UserManagementServiceImpl implements UserManagementService {
     @Autowired
     private UserEntityRepo userEntityRepo;
     @Autowired
@@ -165,7 +163,7 @@ public class UserManagementService {
             }
         };
         Sort sort = new Sort(Sort.Direction.DESC,"userName");
-        Pageable pageable = new PageRequest(param.getNum(),param.getSize(),sort);
+        Pageable pageable = new org.springframework.data.domain.PageRequest(param.getNum(),param.getSize(),sort);
         Page<UserEntity> page = userEntityRepo.findAll(spec,pageable);
         List<UserInfo> userInfos = new ArrayList<UserInfo>();
         List<UserEntity> userEntities = page.getContent();
@@ -197,5 +195,4 @@ public class UserManagementService {
         }
         return userInfoList;
     }
-
 }
