@@ -16,6 +16,7 @@ import com.aliyuncs.profile.IClientProfile;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 import java.util.UUID;
 
 /**
@@ -40,7 +41,7 @@ public class SmsDemo {
     static final String accessKeyId = "LTAIsIOVI0eRUg0J";
     static final String accessKeySecret = "sn16wUvQpRNPUyRHzKNljk2noDWPH8";
 
-    public static SendSmsResponse sendSms() throws ClientException {
+    public static SendSmsResponse sendSms(String phoneNum, int code) throws ClientException {
 
         //可自助调整超时时间
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
@@ -54,13 +55,13 @@ public class SmsDemo {
         //组装请求对象-具体描述见控制台-文档部分内容
         SendSmsRequest request = new SendSmsRequest();
         //必填:待发送手机号
-        request.setPhoneNumbers("13953193651");
+        request.setPhoneNumbers(phoneNum);
         //必填:短信签名-可在短信控制台中找到
-        request.setSignName("LYY");
+        request.setSignName("telchinaqm");
         //必填:短信模板-可在短信控制台中找到
-        request.setTemplateCode("12345");
+        request.setTemplateCode("SMS_167533518");
         //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
-        //request.setTemplateParam("{\"name\":\"Tom\", \"code\":\"123\"}");
+        request.setTemplateParam("{\"code\":" + code + "}");
 
         //选填-上行短信扩展码(无特殊需求用户请忽略此字段)
         //request.setSmsUpExtendCode("90997");
@@ -109,8 +110,14 @@ public class SmsDemo {
     public static void main(String[] args) throws ClientException, InterruptedException {
 
         //发短信
-        SendSmsResponse response = sendSms();
-        System.out.println("短信接口返回的数据----------------");
+        String phoneNum = "13953193651";
+        Random rand = new Random();
+        int code = rand.nextInt(10000);
+        System.out.println("短信接收手机号：" + phoneNum);
+        System.out.println("发送的内容：" + code);
+        System.out.println("----------------");
+        SendSmsResponse response = sendSms(phoneNum, code);
+        System.out.println("短信接口返回的数据：");
         System.out.println("Code=" + response.getCode());
         System.out.println("Message=" + response.getMessage());
         System.out.println("RequestId=" + response.getRequestId());
