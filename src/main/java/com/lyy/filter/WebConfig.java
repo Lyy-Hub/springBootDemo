@@ -14,8 +14,9 @@ public class WebConfig extends WebMvcConfigurerAdapter{
     private JwtFilter jwtFilter;
     @Override
     public void addInterceptors(InterceptorRegistry interceptorRegistry) {
-        interceptorRegistry.addInterceptor(jwtFilter)
-                .addPathPatterns("/**").excludePathPatterns("/management/login");
+        //  开发阶段先注释掉，方便调试
+        /*interceptorRegistry.addInterceptor(jwtFilter)
+                .addPathPatterns("/**").excludePathPatterns("/yulanonline/helloPdf");*/
     }
 
 }
