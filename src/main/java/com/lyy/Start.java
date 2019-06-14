@@ -36,8 +36,8 @@ public class Start extends SpringBootServletInitializer{
     public ServletRegistrationBean restServlet(){
         //注解扫描上下文
         AnnotationConfigWebApplicationContext applicationContext = new AnnotationConfigWebApplicationContext();
-        //项目包名
-        applicationContext.scan("com.lyy.controller");
+        //项目包名<可注释掉>
+        // applicationContext.scan("com.lyy.controller");
         DispatcherServlet my_dispatcherServlet = new DispatcherServlet(applicationContext);
         ServletRegistrationBean registrationBean = new ServletRegistrationBean(my_dispatcherServlet);
         registrationBean.setLoadOnStartup(1);
