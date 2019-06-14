@@ -73,14 +73,6 @@ public class DocumentPreviewOnlineController {
                     converter.convert(docFile, pdfFile);
                     connection.disconnect();
                     System.out.println("**pdf转换成功，PDF输出：" + pdfFile.getPath() + "**");
-                } catch (java.net.ConnectException e) {
-                    e.printStackTrace();
-                    System.out.println("**swf转换异常，openoffice服务未启动！**");
-                    throw e;
-                } catch (com.artofsolving.jodconverter.openoffice.connection.OpenOfficeException e) {
-                    e.printStackTrace();
-                    System.out.println("**swf转换器异常，读取转换文件失败**");
-                    throw e;
                 } catch (Exception e) {
                     e.printStackTrace();
                     throw e;
@@ -89,7 +81,7 @@ public class DocumentPreviewOnlineController {
                 System.out.println("**已经转换为pdf，不需要再进行转化**");
             }
         } else {
-            System.out.println("**swf转换器异常，需要转换的文档不存在，无法转换**");
+            System.out.println("**需要转换的文档不存在，无法转换**");
         }
     }
 
