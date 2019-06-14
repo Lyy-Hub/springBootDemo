@@ -6,8 +6,6 @@ import com.lyy.service.api.ExcelOperationService;
 import com.lyy.utils.Utils;
 import com.lyy.utils.excelUtil.ExcelData;
 import com.lyy.utils.excelUtil.ExcelUtil;
-import com.lyy.utils.excelUtil.testExcelPojo;
-import org.coodex.util.Common;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 import static com.lyy.utils.excelUtil.ExcelUtil.importExcel;
 
@@ -60,7 +59,7 @@ public class ExcelOperationServiceImpl implements ExcelOperationService {
             List<Object[]> list = importExcel(fileName);
             for (int i = 0; i < list.size(); i++) {
                 UserEntity userEntity = new UserEntity();
-                userEntity.setId(Common.getUUIDStr());
+                userEntity.setId(UUID.randomUUID().toString());
                 userEntity.setUserName((String) list.get(i)[0]);
                 userEntity.setAddress((String) list.get(i)[1]);
                 userEntity.setStatus((String) list.get(i)[2]);

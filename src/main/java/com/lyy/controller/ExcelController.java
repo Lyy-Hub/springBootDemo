@@ -3,7 +3,6 @@ package com.lyy.controller;
 import com.lyy.service.api.ExcelOperationService;
 import com.lyy.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
-import org.coodex.concrete.api.Description;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,11 +13,11 @@ import javax.rmi.CORBA.Util;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * excel 导入导出
  * Created by liyueyang on 2019/6/4.
  */
 @RestController
 @RequestMapping("excel")
-@Description(name = "excel 导入导出")
 @Slf4j
 public class ExcelController {
     @Autowired

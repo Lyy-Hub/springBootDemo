@@ -8,7 +8,6 @@ import com.lyy.service.api.UserManagementService;
 import com.lyy.service.copier.UserInfoCopier;
 import com.lyy.utils.JwtUtil;
 import com.lyy.utils.Utils;
-import org.coodex.util.Common;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -25,6 +24,7 @@ import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 
@@ -56,7 +56,7 @@ public class UserManagementServiceImpl implements UserManagementService {
             responseInfo.setInfo("用户名或密码错误");
             return responseInfo;
         } else {
-            String jwt = JwtUtil.createJWT(Common.getUUIDStr(), userEntity.getUserName(), SystemConstant.JWT_TTLMILIS);
+            String jwt = JwtUtil.createJWT(UUID.randomUUID().toString(), userEntity.getUserName(), SystemConstant.JWT_TTLMILIS);
             responseInfo.setCode(SystemConstant.SUCCESS);
             responseInfo.setInfo(jwt);
             return responseInfo;
@@ -76,7 +76,7 @@ public class UserManagementServiceImpl implements UserManagementService {
             if (null == userEntity) {
                 UserEntity userEntity1 = new UserEntity();
                 BeanUtils.copyProperties(userInfo, userEntity1);
-                userEntity1.setId(Common.getUUIDStr());
+                userEntity1.setId(UUID.randomUUID().toString());
                 userEntity1.setStatus("1");
                 userEntity1.setPassword(Utils.md5(userInfo.getPassword()));
                 userEntity1.setCreateTime(Calendar.getInstance());

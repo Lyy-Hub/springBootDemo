@@ -1,7 +1,5 @@
 package com.lyy.entity;
 
-import org.coodex.util.Common;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;

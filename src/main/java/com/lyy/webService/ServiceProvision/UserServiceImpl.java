@@ -1,3 +1,4 @@
+/*
 package com.lyy.webService.ServiceProvision;
 
 import com.lyy.entity.UserEntity;
@@ -9,9 +10,11 @@ import org.springframework.stereotype.Component;
 
 import javax.jws.WebService;
 
+*/
 /**
  * Created by liyueyang on 2019/6/14.
- */
+ *//*
+
 @WebService(serviceName="UserService",//对外发布的服务名
                   targetNamespace="http://ServiceProvision.webService.lyy.com",//指定你想要的名称空间，通常使用使用包名反转
                     endpointInterface="com.lyy.webService.ServiceProvision.UserService")//服务接口全路径, 指定做SEI（Service EndPoint Interface）服务端点接口
@@ -29,3 +32,4 @@ public class UserServiceImpl implements UserService {
         return userInfo;
     }
 }
+*/
