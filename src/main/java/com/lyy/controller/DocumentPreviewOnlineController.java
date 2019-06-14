@@ -23,6 +23,10 @@ import java.io.*;
 public class DocumentPreviewOnlineController {
     @Value("${PDF_LOCAL_PATH}")
     private String pdfLocalPath;
+    @Value("${OPEN_OFFICE_HOST}")
+    private String openOfficeHost;
+    @Value("${OPEN_OFFICE_PORT}")
+    private int openOfficePort;
 
     /**
      * 读取本地pdf,这里设置的是预览
@@ -66,7 +70,7 @@ public class DocumentPreviewOnlineController {
     private void doc2pdf(File docFile,File pdfFile) throws Exception {
         if (docFile.exists()) {
             if (!pdfFile.exists()) {
-                OpenOfficeConnection connection = new SocketOpenOfficeConnection("127.0.0.1", 8100);
+                OpenOfficeConnection connection = new SocketOpenOfficeConnection(openOfficeHost, openOfficePort);
                 try {
                     connection.connect();
                     DocumentConverter converter = new OpenOfficeDocumentConverter(connection);
