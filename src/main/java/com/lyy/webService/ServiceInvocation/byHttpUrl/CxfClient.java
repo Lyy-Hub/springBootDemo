@@ -9,13 +9,13 @@ import org.apache.cxf.jaxws.endpoint.dynamic.JaxWsDynamicClientFactory;
 public class CxfClient {
 
     public static void main(String[] args) {
-        CxfClient.main2();
+        CxfClient.gerService();
     }
 
     /**
      * 2：动态调用
      */
-    public static void main2() {
+    public static void gerService() {
         // 创建动态客户端
         JaxWsDynamicClientFactory dcf = JaxWsDynamicClientFactory.newInstance();
         Client client = dcf.createClient("http://127.0.0.1:8090/soap/user?wsdl");
