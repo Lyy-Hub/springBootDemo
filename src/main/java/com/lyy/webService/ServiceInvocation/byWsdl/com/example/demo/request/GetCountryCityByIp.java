@@ -1,5 +1,5 @@
 
-package com.lyy.webService.byWsdl.com.example.demo.request;
+package com.lyy.webService.ServiceInvocation.byWsdl.com.example.demo.request;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="getCountryCityByIpResult" type="{http://WebXml.com.cn/}ArrayOfString" minOccurs="0"/>
+ *         &lt;element name="theIpAddress" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,35 +28,35 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "getCountryCityByIpResult"
+    "theIpAddress"
 })
-@XmlRootElement(name = "getCountryCityByIpResponse")
-public class GetCountryCityByIpResponse {
+@XmlRootElement(name = "getCountryCityByIp")
+public class GetCountryCityByIp {
 
-    protected ArrayOfString getCountryCityByIpResult;
+    protected String theIpAddress;
 
     /**
-     * 获取getCountryCityByIpResult属性的值。
+     * 获取theIpAddress属性的值。
      * 
      * @return
      *     possible object is
-     *     {@link ArrayOfString }
+     *     {@link String }
      *     
      */
-    public ArrayOfString getGetCountryCityByIpResult() {
-        return getCountryCityByIpResult;
+    public String getTheIpAddress() {
+        return theIpAddress;
     }
 
     /**
-     * 设置getCountryCityByIpResult属性的值。
+     * 设置theIpAddress属性的值。
      * 
      * @param value
      *     allowed object is
-     *     {@link ArrayOfString }
+     *     {@link String }
      *     
      */
-    public void setGetCountryCityByIpResult(ArrayOfString value) {
-        this.getCountryCityByIpResult = value;
+    public void setTheIpAddress(String value) {
+        this.theIpAddress = value;
     }
 
 }

@@ -1,5 +1,5 @@
 
-package com.lyy.webService.byWsdl.com.example.demo.request;
+package com.lyy.webService.ServiceInvocation.byWsdl.com.example.demo.request;
 
 import java.util.ArrayList;
 import java.util.List;

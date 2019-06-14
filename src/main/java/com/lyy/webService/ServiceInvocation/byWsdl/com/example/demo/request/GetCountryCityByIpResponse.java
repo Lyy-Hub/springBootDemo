@@ -1,5 +1,5 @@
 
-package com.lyy.webService.byWsdl.com.example.demo.request;
+package com.lyy.webService.ServiceInvocation.byWsdl.com.example.demo.request;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="getGeoIPContextResult" type="{http://WebXml.com.cn/}ArrayOfString" minOccurs="0"/>
+ *         &lt;element name="getCountryCityByIpResult" type="{http://WebXml.com.cn/}ArrayOfString" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,35 +28,35 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "getGeoIPContextResult"
+    "getCountryCityByIpResult"
 })
-@XmlRootElement(name = "getGeoIPContextResponse")
-public class GetGeoIPContextResponse {
+@XmlRootElement(name = "getCountryCityByIpResponse")
+public class GetCountryCityByIpResponse {
 
-    protected ArrayOfString getGeoIPContextResult;
+    protected ArrayOfString getCountryCityByIpResult;
 
     /**
-     * 获取getGeoIPContextResult属性的值。
+     * 获取getCountryCityByIpResult属性的值。
      * 
      * @return
      *     possible object is
      *     {@link ArrayOfString }
      *     
      */
-    public ArrayOfString getGetGeoIPContextResult() {
-        return getGeoIPContextResult;
+    public ArrayOfString getGetCountryCityByIpResult() {
+        return getCountryCityByIpResult;
     }
 
     /**
-     * 设置getGeoIPContextResult属性的值。
+     * 设置getCountryCityByIpResult属性的值。
      * 
      * @param value
      *     allowed object is
      *     {@link ArrayOfString }
      *     
      */
-    public void setGetGeoIPContextResult(ArrayOfString value) {
-        this.getGeoIPContextResult = value;
+    public void setGetCountryCityByIpResult(ArrayOfString value) {
+        this.getCountryCityByIpResult = value;
     }
 
 }

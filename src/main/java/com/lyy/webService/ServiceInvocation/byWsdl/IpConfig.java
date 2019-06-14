@@ -1,7 +1,7 @@
-package com.lyy.webService.byWsdl;
+package com.lyy.webService.ServiceInvocation.byWsdl;
 
-import com.lyy.webService.byWsdl.com.example.demo.request.IpAddressSearchWebService;
-import com.lyy.webService.byWsdl.com.example.demo.request.IpAddressSearchWebServiceSoap;
+import com.lyy.webService.ServiceInvocation.byWsdl.com.example.demo.request.IpAddressSearchWebService;
+import com.lyy.webService.ServiceInvocation.byWsdl.com.example.demo.request.IpAddressSearchWebServiceSoap;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

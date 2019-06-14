@@ -1,5 +1,5 @@
 
-package com.lyy.webService.byWsdl.com.example.demo.request;
+package com.lyy.webService.ServiceInvocation.byWsdl.com.example.demo.request;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="getVersionTimeResult" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="getGeoIPContextResult" type="{http://WebXml.com.cn/}ArrayOfString" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -28,35 +28,35 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "getVersionTimeResult"
+    "getGeoIPContextResult"
 })
-@XmlRootElement(name = "getVersionTimeResponse")
-public class GetVersionTimeResponse {
+@XmlRootElement(name = "getGeoIPContextResponse")
+public class GetGeoIPContextResponse {
 
-    protected String getVersionTimeResult;
+    protected ArrayOfString getGeoIPContextResult;
 
     /**
-     * 获取getVersionTimeResult属性的值。
+     * 获取getGeoIPContextResult属性的值。
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link ArrayOfString }
      *     
      */
-    public String getGetVersionTimeResult() {
-        return getVersionTimeResult;
+    public ArrayOfString getGetGeoIPContextResult() {
+        return getGeoIPContextResult;
     }
 
     /**
-     * 设置getVersionTimeResult属性的值。
+     * 设置getGeoIPContextResult属性的值。
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link ArrayOfString }
      *     
      */
-    public void setGetVersionTimeResult(String value) {
-        this.getVersionTimeResult = value;
+    public void setGetGeoIPContextResult(ArrayOfString value) {
+        this.getGeoIPContextResult = value;
     }
 
 }

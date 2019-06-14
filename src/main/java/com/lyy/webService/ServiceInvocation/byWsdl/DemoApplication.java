@@ -1,7 +1,7 @@
-package com.lyy.webService.byWsdl;
+package com.lyy.webService.ServiceInvocation.byWsdl;
 
-import com.lyy.webService.byWsdl.com.example.demo.request.ArrayOfString;
-import com.lyy.webService.byWsdl.com.example.demo.request.IpAddressSearchWebServiceSoap;
+import com.lyy.webService.ServiceInvocation.byWsdl.com.example.demo.request.ArrayOfString;
+import com.lyy.webService.ServiceInvocation.byWsdl.com.example.demo.request.IpAddressSearchWebServiceSoap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

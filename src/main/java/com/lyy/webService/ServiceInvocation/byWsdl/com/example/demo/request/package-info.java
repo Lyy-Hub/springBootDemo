@@ -3,4 +3,4 @@
  * 
  */
 @javax.xml.bind.annotation.XmlSchema(namespace = "http://WebXml.com.cn/", elementFormDefault = javax.xml.bind.annotation.XmlNsForm.QUALIFIED)
-package com.lyy.webService.byWsdl.com.example.demo.request;
+package com.lyy.webService.ServiceInvocation.byWsdl.com.example.demo.request;

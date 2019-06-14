@@ -1,4 +1,4 @@
-package com.lyy.webService.byHttpUrl;
+package com.lyy.webService.ServiceInvocation.byHttpUrl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

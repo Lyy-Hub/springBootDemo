@@ -147,6 +147,12 @@
             <artifactId>spring-test</artifactId>
             <version>5.1.5.RELEASE</version>
         </dependency>
+        <!-- CXF依赖 -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+            <version>3.2.4</version>
+        </dependency>
     </dependencies>
 
     <build>
