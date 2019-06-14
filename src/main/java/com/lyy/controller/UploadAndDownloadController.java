@@ -43,7 +43,7 @@ public class UploadAndDownloadController {
     }
 
     /**
-     * 文件上传 MultipartFile
+     * 文件上传 file
      */
     @RequestMapping(value = "upload2")
     public FileInfo upload2(String filePath) throws IOException {
