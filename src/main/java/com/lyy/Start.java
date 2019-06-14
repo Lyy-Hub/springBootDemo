@@ -29,8 +29,6 @@ public class Start extends SpringBootServletInitializer{
      * @Description:  手动配置dispatcher 转发http请求
      * @Param: []
      * @return: org.springframework.boot.web.servlet.ServletRegistrationBean
-     * @Author: chenchuan
-     * @Date: 2019/04/18
      */
     @Bean
     public ServletRegistrationBean restServlet(){
@@ -44,8 +42,6 @@ public class Start extends SpringBootServletInitializer{
         registrationBean.addUrlMappings("/service/*");
         return registrationBean;
     }
-
-
 
     public static void main(String[] args){
         SpringApplication.run(Start.class);
