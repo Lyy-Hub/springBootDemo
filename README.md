@@ -1,4 +1,4 @@
-# springboot
+# SpringBoot
 * **20190601 初始化项目工程**
 
     基于 SpringBoot 构建的 Maven 工程，SpringData JPA + Mysql
