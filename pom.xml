@@ -142,6 +142,11 @@
             <version>2.5</version>
         </dependency>
         <!--在线预览结束-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.1.5.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <build>
