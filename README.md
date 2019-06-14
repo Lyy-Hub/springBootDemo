@@ -1,7 +1,7 @@
 # SpringBoot
 * **20190601 初始化项目工程**
 
-    基于 SpringBoot 构建的 Maven 工程，基础架构包括但不限于 SpringData JPA + Mysql + Redis + MQ
+    基于 SpringBoot 构建的 Maven 工程，技术栈包括但不限于 SpringData JPA + Mysql + JWT + Redis + RabbitMQ + WebService
 * **20190603 用户的登录、增删改查**
 * **20190604 支持 Excel 的导入导出**
 * **20190605 支持 RabbitMQ**
