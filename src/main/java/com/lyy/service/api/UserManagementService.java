@@ -1,5 +1,6 @@
 package com.lyy.service.api;
 
+import com.alibaba.fastjson.JSONObject;
 import com.lyy.pojo.*;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
  */
 public interface UserManagementService {
 
-    ResponseInfo login(LoginInfo loginInfo);
+    JSONObject login(LoginInfo loginInfo);
 
     ResponseInfo addUser(UserInfo userInfo);
 

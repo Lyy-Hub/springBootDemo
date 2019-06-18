@@ -18,4 +18,6 @@ public interface UserEntityRepo extends CrudRepository<UserEntity,String>,JpaSpe
     UserEntity findByUserNameAndStatus(String name,String status);
 
     List<UserEntity> findAll();
+
+    UserEntity findByUserName(String userName);
 }

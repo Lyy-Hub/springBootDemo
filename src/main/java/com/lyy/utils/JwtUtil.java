@@ -1,12 +1,16 @@
 package com.lyy.utils;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.itextpdf.text.pdf.codec.Base64;
+import com.lyy.pojo.LoginInfo;
 import com.lyy.pojo.SystemConstant;
 import com.lyy.pojo.TokenCheckResult;
 import io.jsonwebtoken.*;
-import org.bouncycastle.util.encoders.Base64;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 
 /**
@@ -75,5 +79,12 @@ public class JwtUtil {
                 .setSigningKey(secretKey)
                 .parseClaimsJws(jwt)
                 .getBody();
+    }
+
+    public static String getToken(LoginInfo loginInfo) throws UnsupportedEncodingException {
+        String token = "";
+        token= JWT.create().withAudience(loginInfo.getUserName())
+                .sign(Algorithm.HMAC256(loginInfo.getPassword()));
+        return token;
     }
 }

@@ -1,5 +1,6 @@
 package com.lyy.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.lyy.entity.UserEntity;
 import com.lyy.pojo.*;
 import com.lyy.repo.UserEntityRepo;
@@ -21,6 +22,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -46,7 +48,8 @@ public class UserManagementServiceImpl implements UserManagementService {
      * @param loginInfo
      * @return
      */
-    public ResponseInfo login(LoginInfo loginInfo) {
+    public JSONObject login(LoginInfo loginInfo) {
+        JSONObject jsonObject = new JSONObject();
         ResponseInfo responseInfo = new ResponseInfo();
         String password = Utils.md5(loginInfo.getPassword());
         String name = loginInfo.getUserName();
@@ -54,12 +57,22 @@ public class UserManagementServiceImpl implements UserManagementService {
         if (null == userEntity) {
             responseInfo.setCode(0);
             responseInfo.setInfo("用户名或密码错误");
-            return responseInfo;
+            jsonObject.put("responseInfo",responseInfo);
+            return jsonObject;
         } else {
             String jwt = JwtUtil.createJWT(UUID.randomUUID().toString(), userEntity.getUserName(), SystemConstant.JWT_TTLMILIS);
             responseInfo.setCode(SystemConstant.SUCCESS);
             responseInfo.setInfo(jwt);
-            return responseInfo;
+            String token = null;
+            try {
+                token = JwtUtil.getToken(loginInfo);
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            jsonObject.put("token",token);
+            jsonObject.put("user",userEntity);
+            jsonObject.put("responseInfo",responseInfo);
+            return jsonObject;
         }
     }
 

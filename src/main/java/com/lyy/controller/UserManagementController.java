@@ -1,5 +1,8 @@
 package com.lyy.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.lyy.Interface.Signature;
+import com.lyy.Interface.UserLoginToken;
 import com.lyy.pojo.*;
 import com.lyy.service.api.UserManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +24,7 @@ public class UserManagementController {
      * @return
      */
     @PostMapping(value = "login")
-    public ResponseInfo login(@RequestBody LoginInfo loginInfo) {
+    public JSONObject login(@RequestBody LoginInfo loginInfo) {
         return userManagementService.login(loginInfo);
     }
 
@@ -61,6 +64,7 @@ public class UserManagementController {
      * @return
      */
     @GetMapping(value="findUser")
+    @UserLoginToken
     public PageResult<UserInfo> findUser(@RequestBody PageRequest<UserParam> param){
         return userManagementService.findUser(param);
     }
