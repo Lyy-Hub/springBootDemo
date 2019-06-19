@@ -3,8 +3,6 @@ package com.lyy.utils.excelUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
@@ -17,7 +15,6 @@ import java.util.List;
 
 @Slf4j
 public class ExcelUtil {
-    private final static Logger log = LoggerFactory.getLogger(ExcelUtil.class);
 
     /**
      * 导出为 excel

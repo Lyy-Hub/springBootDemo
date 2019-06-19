@@ -2,8 +2,7 @@ package com.lyy.service.impl;
 
 import com.lyy.rabbitMq.Constants;
 import com.lyy.service.api.RabbitMqSendService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +14,8 @@ import java.util.UUID;
  * Created by liyueyang on 2019/6/5.
  */
 @Component
+@Slf4j
 public class RabbitMqSendServiceImpl implements RabbitMqSendService {
-
-    private static Logger logger = LoggerFactory.getLogger(RabbitMqSendServiceImpl.class);
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -33,7 +31,7 @@ public class RabbitMqSendServiceImpl implements RabbitMqSendService {
         } else { // 为空字符串时。。。
             rabbitTemplate.convertAndSend(Constants.EXCHANGE_NAME, Constants.QUEUE_ROUTE_KEY, message, correlationData);
         }
-        logger.info("发送消息到RabbitMQ, 消息内容: " + message);
+        log.info("发送消息到RabbitMQ, 消息内容: " + message);
     }
 
     /**
@@ -45,11 +43,11 @@ public class RabbitMqSendServiceImpl implements RabbitMqSendService {
      */
     @Override
     public void confirm(CorrelationData correlationData, boolean isSendSuccess, String s) {
-        logger.info("confirm回调消息ID为: " + correlationData.getId());
+        log.info("confirm回调消息ID为: " + correlationData.getId());
         if (isSendSuccess) {
-            logger.info("confirm回调消息发送成功");
+            log.info("confirm回调消息发送成功");
         } else {
-            logger.info("confirm回调消息发送失败" + s);
+            log.info("confirm回调消息发送失败" + s);
         }
     }
 }
