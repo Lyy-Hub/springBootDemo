@@ -8,6 +8,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 @SpringBootApplication
 @ImportResource(locations = "spring.xml")
 @EnableRabbit
+@EnableScheduling
 public class Start extends SpringBootServletInitializer{
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
