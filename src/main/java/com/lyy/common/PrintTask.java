@@ -1,10 +1,17 @@
 package com.lyy.common;
 
+import com.lyy.entity.UserNumEntity;
+import com.lyy.repo.UserEntityRepo;
+import com.lyy.repo.UserNumEntityRepo;
+import com.lyy.utils.Utils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.UUID;
 
 /**
  * 定时器测试
@@ -13,6 +20,10 @@ import java.util.Date;
 @Component
 public class PrintTask {
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    @Autowired
+    private UserEntityRepo userEntityRepo;
+    @Autowired
+    private UserNumEntityRepo userNumEntityRepo;
 
     /**
      * 1、@Scheduled(fixedRate = 5000) ：上一次执行开始时间点之后5秒再执行
@@ -22,11 +33,19 @@ public class PrintTask {
      */
     // 4、@Scheduled(cron="*/5 * * * * *") ：通过cron表达式定义规则，与fixedDelay类似，
     //  上次执行完毕后才进行下次调度。
+    // 3 秒
     @Scheduled(fixedRate = 3000)
+    // 每天
+    //@Scheduled(cron = "0 0 * * * ?")
     public void reportCurrentTime() {
-        // 3秒统计一次用户表中的人数，并存入用户数量表（仅测试，无实际业务意义）
-
-        System.out.println("NOW1：" + sdf.format(new Date()));
+        // 执行任务 - 统计一次用户表中的人数，并存入用户数量表（仅测试，无实际业务意义）
+        long num = userEntityRepo.count();
+        UserNumEntity userNumEntity = new UserNumEntity();
+        userNumEntity.setId(UUID.randomUUID().toString());
+        userNumEntity.setNum(String.valueOf(num));
+        userNumEntity.setCreateTime(Calendar.getInstance());
+        System.out.println(Utils.calender2Str(userNumEntity.getCreateTime()) + " 用户表总数为：：" + num);
+        userNumEntityRepo.save(userNumEntity);
     }
 
    /*@Scheduled(cron = "0/1 * * * * ?")
