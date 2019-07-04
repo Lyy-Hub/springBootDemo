@@ -21,11 +21,11 @@ import java.io.IOException;
 public class QiniuCloudUtil {
 
     // 设置需要操作的账号的AK和SK
-    private static final String ACCESS_KEY = "cKYAXYD1kdHx-MhaIxRmvngMT_87Oyxh4tkkMqzR";
-    private static final String SECRET_KEY = "U_t0aJfGcb5hekqxk6wFapg1dzj7YhZew__NpHSi";
+    private static final String ACCESS_KEY = "--";
+    private static final String SECRET_KEY = "--";
 
     // 要上传的空间
-    private static final String bucketname = "liyueyangqny";
+    private static final String bucketname = "--";
 
     // 密钥
     private static final Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
