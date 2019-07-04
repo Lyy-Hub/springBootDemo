@@ -1,11 +1,18 @@
 package com.lyy.pojo;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Created by liyueyang on 2019/5/24.
  */
 public class UserInfo implements Serializable{
+
+    public interface UserInfoSimpleView{};
+    public interface UserInfoDetailView extends UserInfoSimpleView{};
+
     private String id;
     private String userName;//用户名
     private String password;//密码 md5加密大写
@@ -14,22 +21,7 @@ public class UserInfo implements Serializable{
     private String status;//状态
     private String createTime;
 
-    public String getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(String createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
+    @JsonView(UserInfoSimpleView.class)
     public String getId() {
         return id;
     }
@@ -37,7 +29,7 @@ public class UserInfo implements Serializable{
     public void setId(String id) {
         this.id = id;
     }
-
+    @JsonView(UserInfoSimpleView.class)
     public String getUserName() {
         return userName;
     }
@@ -45,7 +37,7 @@ public class UserInfo implements Serializable{
     public void setUserName(String userName) {
         this.userName = userName;
     }
-
+    @JsonView(UserInfoDetailView.class)
     public String getPassword() {
         return password;
     }
@@ -53,7 +45,7 @@ public class UserInfo implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
-
+    @JsonView(UserInfoSimpleView.class)
     public String getSex() {
         return sex;
     }
@@ -61,13 +53,29 @@ public class UserInfo implements Serializable{
     public void setSex(String sex) {
         this.sex = sex;
     }
-
+    @JsonView(UserInfoSimpleView.class)
     public String getAddress() {
         return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
+    }
+    @JsonView(UserInfoSimpleView.class)
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    @JsonView(UserInfoSimpleView.class)
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
 
     @Override
@@ -79,6 +87,7 @@ public class UserInfo implements Serializable{
                 ", sex='" + sex + '\'' +
                 ", address='" + address + '\'' +
                 ", status='" + status + '\'' +
+                ", createTime='" + createTime + '\'' +
                 '}';
     }
 
@@ -86,25 +95,19 @@ public class UserInfo implements Serializable{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         UserInfo userInfo = (UserInfo) o;
-
-        if (id != null ? !id.equals(userInfo.id) : userInfo.id != null) return false;
-        if (userName != null ? !userName.equals(userInfo.userName) : userInfo.userName != null) return false;
-        if (password != null ? !password.equals(userInfo.password) : userInfo.password != null) return false;
-        if (sex != null ? !sex.equals(userInfo.sex) : userInfo.sex != null) return false;
-        if (address != null ? !address.equals(userInfo.address) : userInfo.address != null) return false;
-        return status != null ? status.equals(userInfo.status) : userInfo.status == null;
+        return Objects.equals(id, userInfo.id) &&
+                Objects.equals(userName, userInfo.userName) &&
+                Objects.equals(password, userInfo.password) &&
+                Objects.equals(sex, userInfo.sex) &&
+                Objects.equals(address, userInfo.address) &&
+                Objects.equals(status, userInfo.status) &&
+                Objects.equals(createTime, userInfo.createTime);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (userName != null ? userName.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (sex != null ? sex.hashCode() : 0);
-        result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        return result;
+
+        return Objects.hash(id, userName, password, sex, address, status, createTime);
     }
 }

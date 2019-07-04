@@ -22,4 +22,5 @@ public interface UserManagementService {
 
     List<UserInfo> findAll();
 
+    UserInfo findOneUser();
 }

@@ -208,4 +208,10 @@ public class UserManagementServiceImpl implements UserManagementService {
         }
         return userInfoList;
     }
+
+    @Override
+    public UserInfo findOneUser() {
+        List<UserEntity> userEntities = userEntityRepo.findAll();
+        return userInfoCopier.copy(userEntities.get(0),new UserInfo());
+    }
 }

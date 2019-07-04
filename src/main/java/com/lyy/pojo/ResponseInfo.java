@@ -4,6 +4,7 @@ package com.lyy.pojo;
  * Created by liyueyang on 2019/5/24.
  */
 public class ResponseInfo {
+
     private int code;
     private String info;
 

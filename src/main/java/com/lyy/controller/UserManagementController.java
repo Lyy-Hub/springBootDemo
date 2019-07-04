@@ -1,6 +1,7 @@
 package com.lyy.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.annotation.JsonView;
 import com.lyy.Interface.Signature;
 import com.lyy.Interface.UserLoginToken;
 import com.lyy.pojo.*;
@@ -67,5 +68,14 @@ public class UserManagementController {
     //@UserLoginToken
     public PageResult<UserInfo> findUser(@RequestBody PageRequest<UserParam> param){
         return userManagementService.findUser(param);
+    }
+
+    /**
+     * 查询一个用户
+     */
+    @GetMapping(value="findOneUser")
+    @JsonView(UserInfo.UserInfoSimpleView.class)
+    public UserInfo findOneUser(){
+        return userManagementService.findOneUser();
     }
 }
