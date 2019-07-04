@@ -1,4 +1,4 @@
-package com.lyy.common;
+package com.lyy.utils;
 
 import com.lyy.entity.UserNumEntity;
 import com.lyy.repo.UserEntityRepo;
