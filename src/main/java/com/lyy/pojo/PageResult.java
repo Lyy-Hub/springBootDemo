@@ -5,6 +5,18 @@ import java.util.List;
 /**
  * Created by liyueyang on 2019/6/3.
  */
+/*  --- Json 格式自定义 ---
+    策略	例子	备注
+    LOWER_CAMEL_CASE	userName	默认策略
+    KEBAB_CASE	user-name
+    LOWER_CASE	username
+    SNAKE_CASE	user_name
+    UPPER_CAMEL_CASE	UserName
+1、配置文件中加上：spring.jackson.property-naming-strategy=SNAKE_CASE
+2、直接在需要自定义的对象上加注解：
+@JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
+3、直接在特定字段上加注解：@JsonProperty("user_name")
+*/
 public class PageResult<T>{
     private int num;
     private int size;
