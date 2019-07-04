@@ -34,9 +34,9 @@ public class PrintTask {
     // 4、@Scheduled(cron="*/5 * * * * *") ：通过cron表达式定义规则，与fixedDelay类似，
     //  上次执行完毕后才进行下次调度。
     // 3 秒
-    @Scheduled(fixedRate = 3000)
+    //@Scheduled(fixedRate = 3000)
     // 每天
-    //@Scheduled(cron = "0 0 * * * ?")
+    @Scheduled(cron = "0 0 * * * ?")
     public void reportCurrentTime() {
         // 执行任务 - 统计一次用户表中的人数，并存入用户数量表（仅测试，无实际业务意义）
         long num = userEntityRepo.count();
@@ -44,7 +44,7 @@ public class PrintTask {
         userNumEntity.setId(UUID.randomUUID().toString());
         userNumEntity.setNum(String.valueOf(num));
         userNumEntity.setCreateTime(Calendar.getInstance());
-        System.out.println(Utils.calender2Str(userNumEntity.getCreateTime()) + " 用户表总数为：：" + num);
+        System.out.println(Utils.calender2Str(userNumEntity.getCreateTime()) + " 用户表总数为：" + num);
         userNumEntityRepo.save(userNumEntity);
     }
 

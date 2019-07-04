@@ -64,7 +64,7 @@ public class UserManagementController {
      * @return
      */
     @GetMapping(value="findUser")
-    @UserLoginToken
+    //@UserLoginToken
     public PageResult<UserInfo> findUser(@RequestBody PageRequest<UserParam> param){
         return userManagementService.findUser(param);
     }
