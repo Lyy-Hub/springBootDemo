@@ -1,11 +1,14 @@
 package com.lyy.pojo;
 
+import io.swagger.annotations.ApiModelProperty;
+
 /**
  * Created by liyueyang on 2019/5/24.
  */
 public class ResponseInfo {
-
+    @ApiModelProperty(value = "状态码")
     private int code;
+    @ApiModelProperty(value = "内容")
     private String info;
 
     public int getCode() {

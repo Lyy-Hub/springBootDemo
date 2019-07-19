@@ -1,6 +1,7 @@
 package com.lyy.pojo;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,13 +13,19 @@ public class UserInfo implements Serializable{
 
     public interface UserInfoSimpleView{};
     public interface UserInfoDetailView extends UserInfoSimpleView{};
-
+    @ApiModelProperty(value = "id")
     private String id;
+    @ApiModelProperty(value = "用户名")
     private String userName;//用户名
+    @ApiModelProperty(value = "密码")
     private String password;//密码 md5加密大写
+    @ApiModelProperty(value = "性别")
     private String sex;//性别
+    @ApiModelProperty(value = "地址")
     private String address;//住址
+    @ApiModelProperty(value = "状态",dataType = "0：正常；1:异常")
     private String status;//状态
+    @ApiModelProperty(value = "创建时间")
     private String createTime;
 
     @JsonView(UserInfoSimpleView.class)
