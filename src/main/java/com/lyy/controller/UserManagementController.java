@@ -84,7 +84,7 @@ public class UserManagementController {
     /**
      * 查询一个用户
      */
-    @ApiOperation(value = "新增单个用户",notes = "仅测试，无具体业务意义")
+    @ApiOperation(value = "查询单个用户",notes = "仅测试，无具体业务意义")
     @GetMapping(value="findOneUser")
     @JsonView(UserInfo.UserInfoSimpleView.class)
     public UserInfo findOneUser(){
