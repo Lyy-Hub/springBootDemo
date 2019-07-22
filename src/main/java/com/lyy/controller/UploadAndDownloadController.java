@@ -2,6 +2,9 @@ package com.lyy.controller;
 
 import com.lyy.pojo.FileInfo;
 import com.lyy.utils.DownloadUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.http.entity.ContentType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Description;
@@ -20,6 +23,8 @@ import java.io.IOException;
  */
 @RestController
 @Description("文件的上传下载")
+@Api(tags = "文件上传下载模块")
+@RequestMapping(value = "uploadAndDownLoad")
 public class UploadAndDownloadController {
     @Value("${UPLOAD_PATH}")
     private String uploadPath;
@@ -28,7 +33,8 @@ public class UploadAndDownloadController {
      * 文件上传 MultipartFile
      */
     @RequestMapping(value = "upload")
-    public FileInfo upload(MultipartFile multipartFile) throws IOException {
+    @ApiOperation("文件上传")
+    public FileInfo upload(@ApiParam(value = "上传的文件", required = true) MultipartFile multipartFile) throws IOException {
         /**
          * 这里是写到本地
          * 还可以用file.getInputStrem()
