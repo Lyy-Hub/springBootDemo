@@ -2,10 +2,11 @@ package com.lyy.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.lyy.Interface.Signature;
-import com.lyy.Interface.UserLoginToken;
 import com.lyy.pojo.*;
 import com.lyy.service.api.UserManagementService;
+import com.lyy.utils.common.PageRequest;
+import com.lyy.utils.common.PageResult;
+import com.lyy.utils.common.ResponseInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;

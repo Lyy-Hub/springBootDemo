@@ -1,4 +1,4 @@
-package com.lyy.pojo;
+package com.lyy.utils.common;
 
 import io.swagger.annotations.ApiModelProperty;
 

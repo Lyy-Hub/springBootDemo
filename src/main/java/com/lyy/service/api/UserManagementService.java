@@ -2,6 +2,9 @@ package com.lyy.service.api;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lyy.pojo.*;
+import com.lyy.utils.common.PageRequest;
+import com.lyy.utils.common.PageResult;
+import com.lyy.utils.common.ResponseInfo;
 
 import java.util.List;
 
@@ -18,7 +21,7 @@ public interface UserManagementService {
 
     ResponseInfo updateUser(final UserInfo userInfo);
 
-    PageResult<UserInfo> findUser(com.lyy.pojo.PageRequest<UserParam> param);
+    PageResult<UserInfo> findUser(PageRequest<UserParam> param);
 
     List<UserInfo> findAll();
 

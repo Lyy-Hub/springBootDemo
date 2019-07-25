@@ -1,6 +1,6 @@
 package com.lyy.controller;
 
-import com.lyy.pojo.ResponseInfo;
+import com.lyy.utils.common.ResponseInfo;
 import com.lyy.utils.QiniuCloudUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

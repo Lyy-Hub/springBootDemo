@@ -4,8 +4,8 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.itextpdf.text.pdf.codec.Base64;
 import com.lyy.pojo.LoginInfo;
-import com.lyy.pojo.SystemConstant;
-import com.lyy.pojo.TokenCheckResult;
+import com.lyy.utils.common.SystemConstant;
+import com.lyy.utils.common.TokenCheckResult;
 import io.jsonwebtoken.*;
 
 import javax.crypto.SecretKey;

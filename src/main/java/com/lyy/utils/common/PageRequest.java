@@ -1,4 +1,4 @@
-package com.lyy.pojo;
+package com.lyy.utils.common;
 
 /**
  * Created by liyueyang on 2019/6/4.

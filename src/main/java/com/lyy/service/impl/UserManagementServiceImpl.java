@@ -9,6 +9,10 @@ import com.lyy.service.api.UserManagementService;
 import com.lyy.service.copier.UserInfoCopier;
 import com.lyy.utils.JwtUtil;
 import com.lyy.utils.Utils;
+import com.lyy.utils.common.PageRequest;
+import com.lyy.utils.common.PageResult;
+import com.lyy.utils.common.ResponseInfo;
+import com.lyy.utils.common.SystemConstant;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -160,7 +164,7 @@ public class UserManagementServiceImpl implements UserManagementService {
      * @param param
      * @return
      */
-    public PageResult<UserInfo> findUser(com.lyy.pojo.PageRequest<UserParam> param){
+    public PageResult<UserInfo> findUser(PageRequest<UserParam> param){
         final UserParam userParam = param.getParamContent();
         Specification spec = new Specification<UserEntity>() {
             @Override
