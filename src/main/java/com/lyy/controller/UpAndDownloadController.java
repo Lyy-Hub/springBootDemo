@@ -1,7 +1,7 @@
 package com.lyy.controller;
 
-import com.lyy.utils.common.FileInfo;
-import com.lyy.utils.DownloadUtils;
+import com.lyy.others.utils.common.FileInfo;
+import com.lyy.others.utils.DownloadUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

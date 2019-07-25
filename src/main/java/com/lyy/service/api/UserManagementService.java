@@ -2,9 +2,9 @@ package com.lyy.service.api;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lyy.pojo.*;
-import com.lyy.utils.common.PageRequest;
-import com.lyy.utils.common.PageResult;
-import com.lyy.utils.common.ResponseInfo;
+import com.lyy.others.utils.common.PageRequest;
+import com.lyy.others.utils.common.PageResult;
+import com.lyy.others.utils.common.ResponseInfo;
 
 import java.util.List;
 

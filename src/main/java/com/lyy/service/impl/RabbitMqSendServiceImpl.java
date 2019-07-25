@@ -1,6 +1,6 @@
 package com.lyy.service.impl;
 
-import com.lyy.rabbitMq.Constants;
+import com.lyy.others.rabbitMq.Constants;
 import com.lyy.service.api.RabbitMqSendService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

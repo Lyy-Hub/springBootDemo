@@ -3,9 +3,9 @@ package com.lyy.service.impl;
 import com.lyy.entity.UserEntity;
 import com.lyy.repo.UserEntityRepo;
 import com.lyy.service.api.ExcelOperationService;
-import com.lyy.utils.Utils;
-import com.lyy.utils.excelUtil.ExcelData;
-import com.lyy.utils.excelUtil.ExcelUtil;
+import com.lyy.others.utils.Utils;
+import com.lyy.others.utils.excelUtil.ExcelData;
+import com.lyy.others.utils.excelUtil.ExcelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +15,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
-import static com.lyy.utils.excelUtil.ExcelUtil.importExcel;
+import static com.lyy.others.utils.excelUtil.ExcelUtil.importExcel;
 
 /**
  * Created by liyueyang on 2019/6/4.

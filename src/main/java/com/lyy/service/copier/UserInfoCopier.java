@@ -2,7 +2,7 @@ package com.lyy.service.copier;
 
 import com.lyy.entity.UserEntity;
 import com.lyy.pojo.UserInfo;
-import com.lyy.utils.Utils;
+import com.lyy.others.utils.Utils;
 import org.springframework.stereotype.Component;
 
 /**
