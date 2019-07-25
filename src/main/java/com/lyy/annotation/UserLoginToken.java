@@ -1,14 +1,14 @@
-package com.lyy.Interface;
+package com.lyy.annotation;
 
 import java.lang.annotation.*;
 
 /**
- * 跳过验证登录token
+ * 需要验证登录token
  * Created by liyueyang on 2019/6/18.
  */
-@Target({ElementType.METHOD, ElementType.TYPE})
+@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface PassToken {
+public @interface UserLoginToken {
     boolean required() default true;
 }

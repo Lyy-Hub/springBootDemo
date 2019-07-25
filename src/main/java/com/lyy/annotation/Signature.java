@@ -1,4 +1,4 @@
-package com.lyy.Interface;
+package com.lyy.annotation;
 
 import java.lang.annotation.*;
 

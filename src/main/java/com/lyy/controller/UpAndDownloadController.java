@@ -25,7 +25,7 @@ import java.io.IOException;
 @Description("文件的上传下载")
 @Api(tags = "文件上传下载模块")
 @RequestMapping(value = "uploadAndDownLoad")
-public class UploadAndDownloadController {
+public class UpAndDownloadController {
     @Value("${UPLOAD_PATH}")
     private String uploadPath;
 

@@ -19,7 +19,7 @@ import java.io.*;
  */
 @RestController
 @Description("文档(word、pdf)在线预览")
-public class DocumentPreviewOnlineController {
+public class DocumentOnlineController {
     @Value("${PDF_LOCAL_PATH}")
     private String pdfLocalPath;
     @Value("${OPEN_OFFICE_HOST}")

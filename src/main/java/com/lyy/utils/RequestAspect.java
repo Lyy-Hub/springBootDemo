@@ -41,7 +41,7 @@ public class RequestAspect {
         log.info("参数=" + joinPoint.getArgs().toString());
     }*/
 
-    @Pointcut(value = "@annotation(com.lyy.Interface.Signature)")
+    @Pointcut(value = "@annotation(com.lyy.annotation.Signature)")
     public void annotationPointCut() {
     }
 

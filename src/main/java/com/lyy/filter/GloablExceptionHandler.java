@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by liyueyang on 2019/6/18.
+ * 全局异常处理类
  */
 @ControllerAdvice
 public class GloablExceptionHandler {
