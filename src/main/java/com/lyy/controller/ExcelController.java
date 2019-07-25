@@ -1,15 +1,21 @@
 package com.lyy.controller;
 
+import com.lyy.entity.UserEntity;
+import com.lyy.pojo.UserInfo;
+import com.lyy.pojo.excelPojo.UserExcelPojo;
+import com.lyy.repo.UserEntityRepo;
 import com.lyy.service.api.ExcelOperationService;
+import com.lyy.service.copier.UserInfoCopier;
 import com.lyy.utils.Utils;
+import com.lyy.utils.excelUtil.easyPoi.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 /**
  * excel 导入导出
@@ -21,11 +27,15 @@ import javax.servlet.http.HttpServletResponse;
 public class ExcelController {
     @Autowired
     private ExcelOperationService excelOperationService;
+    @Autowired
+    private UserEntityRepo userEntityRepo;
+    @Autowired
+    private UserInfoCopier userInfoCopier;
 
     /**
      * 导入
      */
-    @GetMapping(value = "import")
+    @PostMapping(value = "import")
     public String importExcel(@RequestBody String fileName) {
         //fileName = "G:/test.xlsx";
         if (fileName == null && "".equals(fileName)) {
@@ -66,4 +76,32 @@ public class ExcelController {
         }
     }
 
+    /**
+     * easyPoi 导出excel
+     * @param response
+     */
+    @GetMapping("exportUserDetail")
+    public void exportUserDetail(HttpServletResponse response){
+        List<UserEntity> userEntityList = userEntityRepo.findAll();
+        List<UserInfo> userInfoList = new ArrayList<>();
+        for(UserEntity userEntity : userEntityList){
+            userInfoList.add(userInfoCopier.copy(userEntity,new UserInfo()));
+        }
+        exportUserDetail(userInfoList,response);
+    }
+
+    private void exportUserDetail(List<UserInfo> list, HttpServletResponse response) {
+        List<UserExcelPojo> result = new ArrayList<>();
+        for (UserInfo userInfo : list) {
+            UserExcelPojo excel = new UserExcelPojo();
+            excel.setUserName(userInfo.getUserName());
+            excel.setPassword(userInfo.getPassword());
+            excel.setSex(userInfo.getSex());
+            excel.setAddress(userInfo.getAddress());
+            excel.setStatus(userInfo.getStatus());
+            excel.setCreateTime(userInfo.getCreateTime());
+            result.add(excel);
+        }
+        FileUtil.exportExcel(result, "用户统计", "用户统计", UserExcelPojo.class, "用户统计.xls", response);
+    }
 }
