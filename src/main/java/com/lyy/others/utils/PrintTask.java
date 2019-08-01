@@ -42,7 +42,7 @@ public class PrintTask {
         userNumEntity.setId(UUID.randomUUID().toString());
         userNumEntity.setNum(String.valueOf(num));
         userNumEntity.setCreateTime(Calendar.getInstance());
-        System.out.println(Utils.calender2Str(userNumEntity.getCreateTime()) + " 用户表总数为：" + num);
+        System.out.println(ConvertDateTime.calender2Str(userNumEntity.getCreateTime()) + " 用户表总数为：" + num);
         userNumEntityRepo.save(userNumEntity);
     }
 

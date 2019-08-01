@@ -1,6 +1,7 @@
 package com.lyy.service.impl;
 
 import com.lyy.entity.UserEntity;
+import com.lyy.others.utils.ConvertDateTime;
 import com.lyy.repo.UserEntityRepo;
 import com.lyy.service.api.ExcelOperationService;
 import com.lyy.others.utils.Utils;
@@ -35,7 +36,7 @@ public class ExcelOperationServiceImpl implements ExcelOperationService {
             arrs[0] = String.valueOf(userEntity.getUserName());
             arrs[1] = String.valueOf(userEntity.getAddress());
             arrs[2] = String.valueOf(userEntity.getStatus());
-            arrs[3] = String.valueOf(Utils.calender2Str(userEntity.getCreateTime()));
+            arrs[3] = String.valueOf(ConvertDateTime.calender2Str(userEntity.getCreateTime()));
             list.add(arrs);
         }
         //表头赋值

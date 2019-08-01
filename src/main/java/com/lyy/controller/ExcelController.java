@@ -1,12 +1,12 @@
 package com.lyy.controller;
 
 import com.lyy.entity.UserEntity;
+import com.lyy.others.utils.ConvertDateTime;
 import com.lyy.pojo.UserInfo;
 import com.lyy.pojo.excelPojo.UserExcelPojo;
 import com.lyy.repo.UserEntityRepo;
 import com.lyy.service.api.ExcelOperationService;
 import com.lyy.service.copier.UserInfoCopier;
-import com.lyy.others.utils.Utils;
 import com.lyy.others.utils.excelUtil.easyPoi.FileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public class ExcelController {
      */
     @PostMapping(value = "import")
     public String importExcel(@RequestBody String fileName) {
-        //fileName = "G:/test.xlsx";
+        fileName = "G:/test.xlsx";
         if (fileName == null && "".equals(fileName)) {
             return "文件名不能为空！";
         } else {
@@ -59,7 +59,7 @@ public class ExcelController {
      */
     @GetMapping(value = "export")
     public String exportExcel(HttpServletResponse response) {
-        String fileName = Utils.getStringDate() +  "-用户信息表.xls";
+        String fileName = ConvertDateTime.getStringDate() +  "-用户信息表.xls";
         if (fileName == null || "".equals(fileName)) {
             return "文件名不能为空！";
         } else {

@@ -1,8 +1,8 @@
 package com.lyy.service.copier;
 
 import com.lyy.entity.UserEntity;
+import com.lyy.others.utils.ConvertDateTime;
 import com.lyy.pojo.UserInfo;
-import com.lyy.others.utils.Utils;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,7 +18,7 @@ public class UserInfoCopier extends AbstractCopier<UserEntity, UserInfo> {
         userInfo.setSex(userEntity.getSex());
         userInfo.setStatus(userEntity.getStatus());
         userInfo.setAddress(userEntity.getAddress());
-        userInfo.setCreateTime(Utils.calender2Str(userEntity.getCreateTime()));
+        userInfo.setCreateTime(ConvertDateTime.calender2Str(userEntity.getCreateTime()));
         return userInfo;
     }
 }
