@@ -19,7 +19,7 @@ public class RabbitMQController {
     public String saveUser() {
         //发送消息到RabbitMQ
         String message = "发送消息咯！！！";
-        sendMessageService.sendMessage(message,"");
+        sendMessageService.sendMessage(message, "");
         return "success";
     }
 }

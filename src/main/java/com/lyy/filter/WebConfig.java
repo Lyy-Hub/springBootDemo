@@ -12,6 +12,7 @@ public class WebConfig extends WebMvcConfigurerAdapter implements WebMvcConfigur
 
     @Autowired
     private JwtFilter jwtFilter;
+
     @Override
     public void addInterceptors(InterceptorRegistry interceptorRegistry) {
         //  开发阶段先注释掉，方便调试

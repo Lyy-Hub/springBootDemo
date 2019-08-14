@@ -61,7 +61,7 @@ public class UserManagementServiceImpl implements UserManagementService {
         if (null == userEntity) {
             responseInfo.setCode(0);
             responseInfo.setInfo("用户名或密码错误");
-            jsonObject.put("responseInfo",responseInfo);
+            jsonObject.put("responseInfo", responseInfo);
             return jsonObject;
         } else {
             String jwt = JwtUtil.createJWT(UUID.randomUUID().toString(), userEntity.getUserName(), SystemConstant.JWT_TTLMILIS);
@@ -73,15 +73,16 @@ public class UserManagementServiceImpl implements UserManagementService {
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
-            jsonObject.put("token",token);
-            jsonObject.put("user",userEntity);
-            jsonObject.put("responseInfo",responseInfo);
+            jsonObject.put("token", token);
+            jsonObject.put("user", userEntity);
+            jsonObject.put("responseInfo", responseInfo);
             return jsonObject;
         }
     }
 
     /**
      * 添加用户
+     *
      * @param userInfo
      * @return
      */
@@ -114,15 +115,16 @@ public class UserManagementServiceImpl implements UserManagementService {
 
     /**
      * 删除用户
+     *
      * @param ids
      * @return
      */
     public ResponseInfo deleteUser(String[] ids) {
         ResponseInfo responseInfo = new ResponseInfo();
-        for (String id : ids){
+        for (String id : ids) {
             // 删除之前把用户信息存到rabbitmq消息队列中（仅测试，没有实际业务意义）
             UserEntity userEntity = userEntityRepo.findOne(id);
-            sendMessageService.sendMessage(userEntity,"userDelete");
+            sendMessageService.sendMessage(userEntity, "userDelete");
             userEntityRepo.delete(id);
         }
         responseInfo.setCode(SystemConstant.SUCCESS);
@@ -161,32 +163,33 @@ public class UserManagementServiceImpl implements UserManagementService {
 
     /**
      * 分页查询
+     *
      * @param param
      * @return
      */
-    public PageResult<UserInfo> findUser(PageRequest<UserParam> param){
+    public PageResult<UserInfo> findUser(PageRequest<UserParam> param) {
         final UserParam userParam = param.getParamContent();
         Specification spec = new Specification<UserEntity>() {
             @Override
             public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
                 List<Predicate> predicateList = new ArrayList<Predicate>();
-                if (!StringUtils.isEmpty(userParam.getUserName())){
-                    predicateList.add(criteriaBuilder.equal((root.<String>get("userName")),userParam.getUserName()));
+                if (!StringUtils.isEmpty(userParam.getUserName())) {
+                    predicateList.add(criteriaBuilder.equal((root.<String>get("userName")), userParam.getUserName()));
                 }
-                if (!StringUtils.isEmpty(userParam.getStatus())){
-                    predicateList.add(criteriaBuilder.equal((root.<String>get("status")),userParam.getStatus()));
+                if (!StringUtils.isEmpty(userParam.getStatus())) {
+                    predicateList.add(criteriaBuilder.equal((root.<String>get("status")), userParam.getStatus()));
                 }
                 return criteriaBuilder.and(predicateList.toArray(new Predicate[predicateList.size()]));
             }
         };
-        Sort sort = new Sort(Sort.Direction.DESC,"userName");
-        Pageable pageable = new org.springframework.data.domain.PageRequest(param.getNum(),param.getSize(),sort);
-        Page<UserEntity> page = userEntityRepo.findAll(spec,pageable);
+        Sort sort = new Sort(Sort.Direction.DESC, "userName");
+        Pageable pageable = new org.springframework.data.domain.PageRequest(param.getNum(), param.getSize(), sort);
+        Page<UserEntity> page = userEntityRepo.findAll(spec, pageable);
         List<UserInfo> userInfos = new ArrayList<UserInfo>();
         List<UserEntity> userEntities = page.getContent();
 
         for (UserEntity u : userEntities) {
-            UserInfo userInfo = userInfoCopier.copy(u,new UserInfo());
+            UserInfo userInfo = userInfoCopier.copy(u, new UserInfo());
             userInfos.add(userInfo);
         }
         PageResult<UserInfo> pageResult = new PageResult<UserInfo>();
@@ -200,14 +203,15 @@ public class UserManagementServiceImpl implements UserManagementService {
 
     /**
      * 查询所有
-     *  t_user
+     * t_user
+     *
      * @return
      */
     public List<UserInfo> findAll() {
         List<UserInfo> userInfoList = new ArrayList<UserInfo>();
         List<UserEntity> userEntities = userEntityRepo.findAll();
-        for(UserEntity u : userEntities){
-            UserInfo userInfo = userInfoCopier.copy(u,new UserInfo());
+        for (UserEntity u : userEntities) {
+            UserInfo userInfo = userInfoCopier.copy(u, new UserInfo());
             userInfoList.add(userInfo);
         }
         return userInfoList;
@@ -216,6 +220,6 @@ public class UserManagementServiceImpl implements UserManagementService {
     @Override
     public UserInfo findOneUser() {
         List<UserEntity> userEntities = userEntityRepo.findAll();
-        return userInfoCopier.copy(userEntities.get(0),new UserInfo());
+        return userInfoCopier.copy(userEntities.get(0), new UserInfo());
     }
 }

@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
 /**
- *
  * Created by liyueyang on 2019/6/13.
  */
 @RestController
@@ -31,7 +30,7 @@ public class DocumentOnlineController {
      * 读取本地pdf,这里设置的是预览
      */
     @RequestMapping(value = "localPdfWatch")
-    public void localPdfWatch(HttpServletResponse response,String pdfFile) {
+    public void localPdfWatch(HttpServletResponse response, String pdfFile) {
         response.reset();
         response.setContentType("application/pdf");
         try {
@@ -42,7 +41,7 @@ public class DocumentOnlineController {
             // 强制浏览器下载
             //response.setHeader("content-disposition", "attachment;filename=" + pdfLocalPath);
             // 浏览器尝试打开,支持office online或浏览器预览pdf功能
-            response.setHeader("Content-Disposition","inline; filename = file");
+            response.setHeader("Content-Disposition", "inline; filename = file");
             outputStream.flush();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -55,18 +54,18 @@ public class DocumentOnlineController {
      * word2pdf ---> pdf在线预览
      */
     @RequestMapping(value = "word2PdfThenWatch")
-    public void word2pdfThenWatch(HttpServletResponse response,String filePath) throws Exception {
+    public void word2pdfThenWatch(HttpServletResponse response, String filePath) throws Exception {
         String fileNameWithPath = filePath.substring(0, filePath.lastIndexOf("."));
         String fileName = filePath.substring(filePath.lastIndexOf("/") + 1, filePath.lastIndexOf("."));
         File docFile = new File(filePath);
         String pdfFilePath = pdfLocalPath.trim() == "" || pdfLocalPath.trim().equals("") ?
                 fileNameWithPath + ".pdf" : pdfLocalPath + "\\" + fileName + ".pdf";
         File pdfFile = new File(pdfFilePath);
-        doc2pdf(docFile,pdfFile);
-        localPdfWatch(response,pdfFilePath);
+        doc2pdf(docFile, pdfFile);
+        localPdfWatch(response, pdfFilePath);
     }
 
-    private void doc2pdf(File docFile,File pdfFile) throws Exception {
+    private void doc2pdf(File docFile, File pdfFile) throws Exception {
         if (docFile.exists()) {
             if (!pdfFile.exists()) {
                 OpenOfficeConnection connection = new SocketOpenOfficeConnection(openOfficeHost, openOfficePort);

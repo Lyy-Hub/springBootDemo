@@ -18,7 +18,7 @@ import com.google.common.base.Predicates;
 @Configuration
 @EnableSwagger2
 @ConditionalOnExpression("${swagger.enable:true}")
-public class SwaggerConfig  {
+public class SwaggerConfig {
     @Bean
     public Docket swaggerSpringMvcPlugin() {
         ApiInfo apiInfo = new ApiInfo(

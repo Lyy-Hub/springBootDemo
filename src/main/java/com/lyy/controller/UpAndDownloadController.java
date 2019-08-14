@@ -71,7 +71,7 @@ public class UpAndDownloadController {
      * 下载 --> 文件在服务器上的路径，包含文件名
      */
     @RequestMapping(value = "download")
-    public void download(HttpServletResponse response, String filePath){
+    public void download(HttpServletResponse response, String filePath) {
         DownloadUtils.download(response, filePath);
         System.out.println("文件 " + filePath + " 下载成功！");
     }
@@ -83,7 +83,7 @@ public class UpAndDownloadController {
         File file = new File(filePath);
         FileInputStream fileInputStream = new FileInputStream(file);
         MultipartFile multipartFile = new MockMultipartFile(file.getName(),
-                file.getName(), ContentType.APPLICATION_OCTET_STREAM.toString(),fileInputStream);
+                file.getName(), ContentType.APPLICATION_OCTET_STREAM.toString(), fileInputStream);
         return multipartFile;
     }
 }
