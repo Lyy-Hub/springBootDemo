@@ -3,7 +3,7 @@ package com.lyy.others.utils.excelUtil;
 /**
  * Created by liyueyang on 2019/6/4.
  */
-public class testExcelPojo {
+public class TestExcelPojo {
     private String userName;
     private String address;
     private String status;

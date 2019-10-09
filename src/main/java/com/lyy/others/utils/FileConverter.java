@@ -26,7 +26,7 @@ public class FileConverter extends Thread{
 
     private static final int environment = 1;
     private String fileString;
-    private String outputPath = "";
+//    private String outputPath;
     private String fileName;
     private File pdfFile;
     private File swfFile;
@@ -163,7 +163,7 @@ public class FileConverter extends Thread{
     static String loadStream(InputStream in) throws IOException {
         int ptr = 0;
         // 把InputStream字节流 替换为BufferedReader字符流
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in,"UTF-8"));
         StringBuilder buffer = new StringBuilder();
         while ((ptr = reader.read()) != -1) {
             buffer.append((char) ptr);
@@ -221,15 +221,16 @@ public class FileConverter extends Thread{
     /*
      * 设置输出路径
      */
-    public void setOutputPath(String outputPath) {
-        this.outputPath = outputPath;
-        if (!outputPath.equals("")) {
-            String realName = fileName.substring(fileName.lastIndexOf("/"), fileName.lastIndexOf("."));
-            if (outputPath.charAt(outputPath.length()) == '/') {
-                swfFile = new File(outputPath + realName + ".swf");
-            } else {
-                swfFile = new File(outputPath + realName + ".swf");
-            }
-        }
-    }
+//    public void setOutputPath(String outputPath) {
+//        this.outputPath = outputPath;
+//        if (!outputPath.equals("")) {
+//            String realName = fileName.substring(fileName.lastIndexOf("/"), fileName.lastIndexOf("."));
+//            if (outputPath.charAt(outputPath.length()) == '/') {
+//                swfFile = new File(outputPath + realName + ".swf");
+//            } else {
+//                // todo 与if块中的内容一致了。。。
+////                swfFile = new File(outputPath + realName + ".swf");
+//            }
+//        }
+//    }
 }

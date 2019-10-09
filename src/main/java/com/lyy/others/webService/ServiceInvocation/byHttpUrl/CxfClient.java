@@ -21,7 +21,7 @@ public class CxfClient {
         Client client = dcf.createClient("http://127.0.0.1:8090/soap/user?wsdl");
         // 需要密码的情况需要加上用户名和密码
         // client.getOutInterceptors().add(new ClientLoginInterceptor(USER_NAME, PASS_WORD));
-        Object[] objects = new Object[0];
+        Object[] objects;
         try {
             // invoke("方法名",参数1,参数2,参数3....);
             objects = client.invoke("getUserById", "121e8b61b1dd42ceaa55fc2a337cabe0");

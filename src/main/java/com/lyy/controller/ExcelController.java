@@ -36,7 +36,7 @@ public class ExcelController {
      */
     @PostMapping(value = "import")
     public String importExcel(@RequestBody String fileName) {
-        fileName = "G:/test.xlsx";
+//        fileName = "G:/test.xlsx";
         if (fileName == null && "".equals(fileName)) {
             return "文件名不能为空！";
         } else {

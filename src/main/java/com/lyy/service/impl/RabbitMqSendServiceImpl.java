@@ -26,7 +26,7 @@ public class RabbitMqSendServiceImpl implements RabbitMqSendService {
         rabbitTemplate.setConfirmCallback(this);
         //构建回调返回的数据
         CorrelationData correlationData = new CorrelationData(UUID.randomUUID().toString());
-        if (sign == "userDelete") { // 用户删除
+        if ("userDelete".equals(sign)) { // 用户删除
             rabbitTemplate.convertAndSend(Constants.USER_DELETE_EXCHANGE_NAME, Constants.USER_DELETE_QUEUE_ROUTE_KEY, message, correlationData);
         } else { // 为空字符串时。。。
             rabbitTemplate.convertAndSend(Constants.EXCHANGE_NAME, Constants.QUEUE_ROUTE_KEY, message, correlationData);

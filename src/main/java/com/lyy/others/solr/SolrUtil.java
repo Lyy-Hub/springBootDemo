@@ -12,7 +12,7 @@ public class SolrUtil {
 	 * @return yyyy-MM-ddTHH:mm:ssZ
 	 */
 	public static String toSolrDate(String date) {
-		if(date.equals("") || date == "") {
+		if("".equals(date)) {
 			return null;
 		}
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

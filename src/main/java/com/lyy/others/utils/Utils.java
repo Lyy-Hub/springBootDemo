@@ -1,5 +1,6 @@
 package com.lyy.others.utils;
 
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -12,7 +13,12 @@ public class Utils {
         StringBuffer buffer = new StringBuffer();
         try {
             messageDigest = MessageDigest.getInstance("md5");
-            byte[] bytes = messageDigest.digest(str.getBytes());
+            byte[] bytes = new byte[0];
+            try {
+                bytes = messageDigest.digest(str.getBytes("UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             // 把每一个byte 做一个与运算 0xff;
             for (byte b : bytes) {
                 // 与运算

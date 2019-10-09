@@ -179,7 +179,7 @@ public class ExcelUtil {
             String fileName = "G:/test.xlsx";
             List<Object[]> list = importExcel(fileName);
             for (int i = 0; i < list.size(); i++) {
-                testExcelPojo testExcelPojo = new testExcelPojo();
+                TestExcelPojo testExcelPojo = new TestExcelPojo();
                 testExcelPojo.setUserName((String) list.get(i)[0]);
                 testExcelPojo.setAddress((String) list.get(i)[1]);
                 testExcelPojo.setStatus((String) list.get(i)[2]);
