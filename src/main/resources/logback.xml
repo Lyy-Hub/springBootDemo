@@ -10,9 +10,9 @@
 
     <!--设置日志输出为文件-->
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <File>G:\SBJK\Log\logFile.log</File>
+        <File>G:\Log\logFile.log</File>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <FileNamePattern>G:\SBJK\Log\logFile.%d{yyyy-MM}.log.zip</FileNamePattern>
+            <FileNamePattern>G:\Log\logFile.%d{yyyy-MM}.log.zip</FileNamePattern>
         </rollingPolicy>
 
         <layout class="ch.qos.logback.classic.PatternLayout">
