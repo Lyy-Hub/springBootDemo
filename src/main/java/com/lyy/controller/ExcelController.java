@@ -2,6 +2,7 @@ package com.lyy.controller;
 
 import com.lyy.entity.UserEntity;
 import com.lyy.others.utils.ConvertDateTime;
+import com.lyy.others.utils.StringUtil;
 import com.lyy.pojo.UserInfo;
 import com.lyy.pojo.excelPojo.UserExcelPojo;
 import com.lyy.repo.UserEntityRepo;
@@ -9,10 +10,13 @@ import com.lyy.service.api.ExcelOperationService;
 import com.lyy.service.copier.UserInfoCopier;
 import com.lyy.others.utils.excelUtil.easyPoi.FileUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,12 +58,13 @@ public class ExcelController {
 
     /**
      * 导出
+     *
      * @param response
      * @return
      */
     @GetMapping(value = "export")
     public String exportExcel(HttpServletResponse response) {
-        String fileName = ConvertDateTime.getStringDate() +  "-用户信息表.xls";
+        String fileName = ConvertDateTime.getStringDate() + "-用户信息表.xls";
         if (fileName == null || "".equals(fileName)) {
             return "文件名不能为空！";
         } else {
@@ -77,16 +82,17 @@ public class ExcelController {
 
     /**
      * easyPoi 导出excel
+     *
      * @param response
      */
     @GetMapping("exportUserDetail")
-    public void exportUserDetail(HttpServletResponse response){
+    public void exportUserDetail(HttpServletResponse response) {
         List<UserEntity> userEntityList = userEntityRepo.findAll();
         List<UserInfo> userInfoList = new ArrayList<>();
-        for(UserEntity userEntity : userEntityList){
-            userInfoList.add(userInfoCopier.copy(userEntity,new UserInfo()));
+        for (UserEntity userEntity : userEntityList) {
+            userInfoList.add(userInfoCopier.copy(userEntity, new UserInfo()));
         }
-        exportUserDetail(userInfoList,response);
+        exportUserDetail(userInfoList, response);
     }
 
     private void exportUserDetail(List<UserInfo> list, HttpServletResponse response) {
@@ -103,4 +109,21 @@ public class ExcelController {
         }
         FileUtil.exportExcel(result, "用户统计", "用户统计", UserExcelPojo.class, "用户统计.xls", response);
     }
+
+    /**
+     * 使用模板导出 excel
+     */
+    @RequestMapping(value = "/exportExcelByTemplate", method = RequestMethod.GET)
+    public void exportExcelByTemplate(HttpServletRequest request, HttpServletResponse response,
+                                      @RequestParam(value = "paraMap", required = true) String paraMapJson) throws Exception {
+        XSSFWorkbook wb = excelOperationService.exportExcelByTemplate(request, paraMapJson);
+        String filename = "根据模板导出数据" + StringUtil.generateUUID() + ".xlsx";
+        response.setContentType("application/vnd.ms-excel");
+        response.setHeader("Content-disposition", "attachment;filename=" + StringUtil.toUtf8String(filename));
+        OutputStream ouputStream = response.getOutputStream();
+        wb.write(ouputStream);
+        ouputStream.flush();
+        ouputStream.close();
+    }
+
 }

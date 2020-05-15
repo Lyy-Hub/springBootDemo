@@ -2,19 +2,20 @@ package com.lyy.service.impl;
 
 import com.lyy.entity.UserEntity;
 import com.lyy.others.utils.ConvertDateTime;
+import com.lyy.others.utils.excelUtil.ExportExcelByTemplateUtil;
 import com.lyy.repo.UserEntityRepo;
 import com.lyy.service.api.ExcelOperationService;
 import com.lyy.others.utils.Utils;
 import com.lyy.others.utils.excelUtil.ExcelData;
 import com.lyy.others.utils.excelUtil.ExcelUtil;
+import net.sf.json.JSONObject;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import static com.lyy.others.utils.excelUtil.ExcelUtil.importExcel;
 
@@ -75,5 +76,19 @@ public class ExcelOperationServiceImpl implements ExcelOperationService {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public XSSFWorkbook exportExcelByTemplate(HttpServletRequest request, String paraMapJson) {
+        List dataList = new ArrayList(); // TODO 此处查库获取数据 list
+
+        Map paraMap = new HashMap();
+        JSONObject json = JSONObject.fromObject(paraMapJson);
+        for (Object k : json.keySet()) {
+            Object v = json.get(k);
+            paraMap.put(k.toString(), v);
+        }
+        XSSFWorkbook wb = ExportExcelByTemplateUtil.exportExcelByTemplateUtil(dataList);
+        return wb;
     }
 }

@@ -1,12 +1,18 @@
 package com.lyy.others.utils;
 
 import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by liyueyang on 2019/6/18.
@@ -21,7 +27,7 @@ public class RequestAspect {
      *
      * @param joinPoint 连接点，就是被拦截点
      */
-    /*@Before(value = "@annotation(com.lyy.Interface.Signature)")
+    @Before(value = "@annotation(com.lyy.others.annotation.Signature)")
     public void doBefore(JoinPoint joinPoint) {
         //获取到请求的属性
         ServletRequestAttributes attributes =
@@ -39,7 +45,7 @@ public class RequestAspect {
                 "and method name=" + joinPoint.getSignature().getName());
         //参数
         log.info("参数=" + joinPoint.getArgs().toString());
-    }*/
+    }
 
     @Pointcut(value = "@annotation(com.lyy.others.annotation.Signature)")
     public void annotationPointCut() {
@@ -50,7 +56,7 @@ public class RequestAspect {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         String methodName = signature.getMethod().getName();
         System.out.println("方法名：" + methodName);
-        if(!validate()){
+        if (!validate()) {
             return "没有权限";
         }
         try {
@@ -60,7 +66,7 @@ public class RequestAspect {
         }
     }
 
-    private boolean validate(){
+    private boolean validate() {
         // TODO 实现自己的鉴权功能
         return true;
     }
