@@ -65,7 +65,7 @@ public class ExcelController {
     @GetMapping(value = "export")
     public String exportExcel(HttpServletResponse response) {
         String fileName = ConvertDateTime.getStringDate() + "-用户信息表.xls";
-        if (fileName == null || "".equals(fileName)) {
+        if ("".equals(fileName)) {
             return "文件名不能为空！";
         } else {
             if (fileName.endsWith("xls")) {
